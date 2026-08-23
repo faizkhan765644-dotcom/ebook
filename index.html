@@ -1,0 +1,1817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Practical Guide — A Clear Path Forward</title>
+    <meta name="description" content="Discover a practical, easy-to-follow guide designed to help you understand the process, take the right steps, and make real progress. Get instant access today." />
+    <link rel="canonical" href="https://yourdomain.com/" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Practical Guide — A Clear Path Forward" />
+    <meta property="og:description" content="A practical guide designed to help you understand the process, take the right steps, and make real progress." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://yourdomain.com/" />
+    <meta property="og:image" content="https://yourdomain.com/assets/images/og-image.jpg" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <style>
+        /* ============================================================
+           CSS VARIABLES & RESET
+           ============================================================ */
+        :root {
+            --bg: #F8F6F1;
+            --text-primary: #1D1D1B;
+            --text-secondary: #6F6A62;
+            --accent: #9B6B4A;
+            --light-accent: #E8DED4;
+            --white: #FFFFFF;
+            --border: #DED8D0;
+
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+
+            --max-width: 1200px;
+            --section-padding: 80px 0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ============================================================
+           BUTTONS
+           ============================================================ */
+        .btn {
+            display: inline-block;
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 14px 36px;
+            border-radius: 40px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--white);
+            box-shadow: 0 4px 12px rgba(155, 107, 74, 0.25);
+        }
+
+        .btn-primary:hover {
+            background-color: #7d5840;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(155, 107, 74, 0.35);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--light-accent);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .btn-small {
+            padding: 10px 24px;
+            font-size: 0.9rem;
+        }
+
+        .btn-large {
+            padding: 18px 48px;
+            font-size: 1.2rem;
+        }
+
+        .btn-block {
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* ============================================================
+           HEADER
+           ============================================================ */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: transparent;
+            transition: all 0.3s ease;
+            padding: 16px 0;
+        }
+
+        .site-header.scrolled {
+            background: rgba(248, 246, 241, 0.92);
+            backdrop-filter: blur(6px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.04);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text {
+            display: inline-block;
+        }
+
+        .nav-desktop .nav-list {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-desktop .nav-list a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: color 0.2s;
+        }
+
+        .nav-desktop .nav-list a:hover,
+        .nav-desktop .nav-list a.active {
+            color: var(--text-primary);
+        }
+
+        .nav-desktop .nav-list .btn-primary {
+            color: var(--white);
+        }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .hamburger-line {
+            width: 28px;
+            height: 2px;
+            background: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hamburger.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Mobile nav */
+        .nav-mobile {
+            display: none;
+            background: var(--bg);
+            padding: 20px 24px;
+            border-top: 1px solid var(--border);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+        }
+
+        .nav-mobile.open {
+            display: block;
+        }
+
+        .nav-mobile-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .nav-mobile-list a {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .nav-mobile-list .btn-primary {
+            margin-top: 8px;
+        }
+
+        /* ============================================================
+           SECTIONS – COMMON
+           ============================================================ */
+        section {
+            padding: var(--section-padding);
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 650px;
+            margin-bottom: 48px;
+        }
+
+        /* ============================================================
+           HERO
+           ============================================================ */
+        .hero {
+            padding: 40px 0 80px;
+        }
+
+        .hero-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .hero-eyebrow {
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .hero-title {
+            font-family: var(--font-heading);
+            font-size: 4rem;
+            line-height: 1.1;
+            font-weight: 700;
+        }
+
+        .hero-text {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 550px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+
+        .hero-trust {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 8px;
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .ebook-mockup {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            aspect-ratio: 3/4;
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08), 0 10px 30px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .ebook-mockup img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 16px;
+        }
+
+        .ebook-cover {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .ebook-label {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            color: var(--text-secondary);
+            display: block;
+            margin-bottom: 16px;
+        }
+
+        .ebook-title-placeholder {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .ebook-sub-placeholder {
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .mockup-badge {
+            position: absolute;
+            background: var(--white);
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            border: 1px solid var(--border);
+        }
+
+        .badge-1 {
+            top: 10%;
+            left: -10%;
+        }
+        .badge-2 {
+            bottom: 20%;
+            right: -8%;
+        }
+        .badge-3 {
+            bottom: 40%;
+            left: -12%;
+        }
+
+        .ebook-mockup.small {
+            max-width: 240px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+        }
+
+        /* ============================================================
+           PROBLEM
+           ============================================================ */
+        .problem {
+            background: var(--white);
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin: 40px 0 20px;
+        }
+
+        .problem-card {
+            background: var(--bg);
+            padding: 28px 24px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .problem-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
+        .problem-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .problem-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .problem-transition {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-top: 40px;
+            color: var(--accent);
+        }
+
+        /* ============================================================
+           SOLUTION
+           ============================================================ */
+        .solution {
+            background: var(--bg);
+        }
+
+        .solution-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .solution-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .solution-points {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .solution-points li {
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        /* ============================================================
+           INSIDE
+           ============================================================ */
+        .inside {
+            background: var(--white);
+        }
+
+        .inside-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .inside-item {
+            background: var(--bg);
+            padding: 28px 24px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .inside-chapter {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: var(--accent);
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .inside-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        .inside-item p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* ============================================================
+           PREVIEW
+           ============================================================ */
+        .preview {
+            background: var(--bg);
+        }
+
+        .preview-scroll {
+            display: flex;
+            gap: 24px;
+            overflow-x: auto;
+            padding: 20px 0 30px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .preview-item {
+            flex: 0 0 280px;
+            scroll-snap-align: start;
+        }
+
+        .preview-page {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid var(--border);
+            height: 340px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        .preview-label {
+            font-size: 0.65rem;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .preview-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .preview-title {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .preview-sub {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .preview-heading {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .preview-toc,
+        .preview-checklist {
+            list-style: none;
+            padding: 0;
+        }
+
+        .preview-toc li,
+        .preview-checklist li {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            padding: 4px 0;
+        }
+
+        .preview-checklist li {
+            padding: 4px 0;
+        }
+
+        .preview-cta {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* ============================================================
+           BONUSES
+           ============================================================ */
+        .bonuses {
+            background: var(--white);
+        }
+
+        .bonuses-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .bonus-card {
+            background: var(--bg);
+            padding: 28px 24px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .bonus-number {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: var(--accent);
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .bonus-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        .bonus-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* ============================================================
+           BENEFITS
+           ============================================================ */
+        .benefits {
+            background: var(--bg);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 20px;
+        }
+
+        .benefit-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+
+        .benefit-item p {
+            color: var(--text-secondary);
+            max-width: 400px;
+        }
+
+        /* ============================================================
+           TESTIMONIALS
+           ============================================================ */
+        .testimonials {
+            background: var(--white);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: var(--bg);
+            padding: 28px 24px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .testimonial-card blockquote {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .testimonial-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--light-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .testimonial-name {
+            font-weight: 600;
+            display: block;
+        }
+
+        .testimonial-role {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* ============================================================
+           CREATOR
+           ============================================================ */
+        .creator {
+            background: var(--bg);
+        }
+
+        .creator-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .creator-photo {
+            background: var(--light-accent);
+            border-radius: 16px;
+            aspect-ratio: 4/5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-weight: 500;
+            border: 1px solid var(--border);
+        }
+
+        .creator-content {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .creator-bio {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+        }
+
+        .creator-story h3 {
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+
+        .creator-story p {
+            color: var(--text-secondary);
+        }
+
+        /* ============================================================
+           FAQ (homepage)
+           ============================================================ */
+        .faq {
+            background: var(--white);
+        }
+
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+        }
+
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--font-body);
+            font-weight: 500;
+            font-size: 1.05rem;
+            cursor: pointer;
+            padding: 8px 0;
+            text-align: left;
+            color: var(--text-primary);
+            transition: color 0.2s;
+        }
+
+        .faq-question:hover {
+            color: var(--accent);
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            font-weight: 300;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.open .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+            padding: 0 0 0 0;
+            color: var(--text-secondary);
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 300px;
+            padding: 12px 0 4px 0;
+        }
+
+        .faq-more {
+            text-align: center;
+        }
+
+        /* ============================================================
+           PRICE
+           ============================================================ */
+        .price {
+            background: var(--bg);
+            padding: 60px 0;
+        }
+
+        .price-card {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 48px 40px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
+        }
+
+        .price-amount {
+            margin: 20px 0;
+        }
+
+        .price-currency {
+            font-size: 2rem;
+            font-weight: 300;
+            vertical-align: top;
+            line-height: 1;
+        }
+
+        .price-number {
+            font-size: 4rem;
+            font-weight: 700;
+            font-family: var(--font-heading);
+        }
+
+        .price-label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .price-features {
+            list-style: none;
+            padding: 0;
+            margin: 24px 0;
+            text-align: left;
+            display: inline-block;
+        }
+
+        .price-features li {
+            padding: 6px 0;
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .price-trust {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 16px;
+        }
+
+        /* ============================================================
+           FINAL CTA
+           ============================================================ */
+        .final-cta {
+            background: var(--accent);
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .final-cta-title {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .final-cta-text {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 32px;
+            opacity: 0.9;
+        }
+
+        .final-cta .btn-primary {
+            background: var(--white);
+            color: var(--accent);
+            box-shadow: none;
+        }
+
+        .final-cta .btn-primary:hover {
+            background: var(--light-accent);
+            transform: translateY(-2px);
+        }
+
+        .final-cta-trust {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        .site-footer {
+            background: var(--text-primary);
+            color: #ccc;
+            padding: 60px 0 20px;
+        }
+
+        .footer-inner {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-col .logo {
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+
+        .footer-desc {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            opacity: 0.7;
+            max-width: 300px;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            font-weight: 600;
+            margin-bottom: 16px;
+            font-size: 1rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .footer-col ul li a:hover {
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            padding-top: 24px;
+        }
+
+        .footer-bottom-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+
+        /* ============================================================
+           BACK TO TOP
+           ============================================================ */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: var(--white);
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: #7d5840;
+            transform: translateY(-3px);
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 1024px) {
+            .hero-title {
+                font-size: 3.2rem;
+            }
+            .hero-inner {
+                gap: 40px;
+            }
+            .problem-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .inside-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .bonuses-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .footer-inner {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-desktop {
+                display: none;
+            }
+            .hamburger {
+                display: flex;
+            }
+
+            .hero-inner,
+            .solution-inner,
+            .creator-inner {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content {
+                order: 1;
+            }
+            .hero-visual {
+                order: 0;
+            }
+            .hero-actions {
+                justify-content: center;
+            }
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            .section-title {
+                font-size: 2.4rem;
+            }
+
+            .problem-grid {
+                grid-template-columns: 1fr;
+            }
+            .inside-grid {
+                grid-template-columns: 1fr;
+            }
+            .bonuses-grid {
+                grid-template-columns: 1fr;
+            }
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .price-card {
+                padding: 32px 20px;
+            }
+            .final-cta-title {
+                font-size: 2.2rem;
+            }
+
+            .mockup-badge {
+                display: none;
+            }
+            .ebook-mockup {
+                max-width: 280px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .btn {
+                padding: 12px 28px;
+            }
+            .btn-large {
+                padding: 14px 32px;
+            }
+            .container {
+                padding: 0 16px;
+            }
+            .final-cta-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    HEADER
+    ============================================================ -->
+    <header class="site-header" id="siteHeader">
+        <div class="container header-inner">
+            <!-- Logo -->
+            <a href="index.html" class="logo">
+                <span class="logo-text">[BRAND_NAME]</span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="nav-desktop" aria-label="Main navigation">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="product.html">Product</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#buy" class="btn btn-primary btn-small">Buy Now</a></li>
+                </ul>
+            </nav>
+
+            <!-- Mobile Hamburger -->
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+
+        <!-- Mobile Nav -->
+        <nav class="nav-mobile" id="navMobile" aria-label="Mobile navigation">
+            <ul class="nav-mobile-list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="product.html">Product</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="#buy" class="btn btn-primary btn-block">Buy Now</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- ============================================================
+        HERO
+        ============================================================ -->
+        <section class="hero" id="hero">
+            <div class="container hero-inner">
+                <div class="hero-content">
+                    <span class="hero-eyebrow">THE PRACTICAL GUIDE</span>
+                    <h1 class="hero-title">Stop Guessing. Follow a Clearer Path Forward.</h1>
+                    <p class="hero-text">
+                        Get the practical framework, steps, and insights you need in one focused guide —
+                        so you can spend less time searching and more time taking action.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#buy" class="btn btn-primary">Buy Now</a>
+                        <a href="#inside" class="btn btn-secondary">See What's Inside</a>
+                    </div>
+                    <p class="hero-trust">Instant digital access &bull; Read on any device</p>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="ebook-mockup">
+                        <img src="https://ebook.aamir68599.workers.dev/clarity%20image.png" alt="Clarity Ebook Cover" />
+                        <div class="mockup-badge badge-1">Instant Access</div>
+                        <div class="mockup-badge badge-2">Practical Guide</div>
+                        <div class="mockup-badge badge-3">120+ Pages</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        PROBLEM
+        ============================================================ -->
+        <section class="problem" id="problem">
+            <div class="container">
+                <div class="section-label">THE CHALLENGE</div>
+                <h2 class="section-title">Too Much Information. Not Enough Direction.</h2>
+                <p class="section-subtitle">
+                    You're not alone. Most people struggle with the same obstacles when trying to learn something new.
+                </p>
+
+                <div class="problem-grid">
+                    <div class="problem-card">
+                        <div class="problem-icon">📄</div>
+                        <h3>Scattered Information</h3>
+                        <p>You're jumping between videos, posts, articles and advice — none of it connected.</p>
+                    </div>
+                    <div class="problem-card">
+                        <div class="problem-icon">🧩</div>
+                        <h3>No Clear Process</h3>
+                        <p>You know what you want, but don't know what to do first or how to structure your efforts.</p>
+                    </div>
+                    <div class="problem-card">
+                        <div class="problem-icon">🌀</div>
+                        <h3>Information Overload</h3>
+                        <p>More information doesn't always mean more progress. It often just means more confusion.</p>
+                    </div>
+                    <div class="problem-card">
+                        <div class="problem-icon">🎯</div>
+                        <h3>Hard to Stay Focused</h3>
+                        <p>Constantly switching between resources makes it harder to actually learn and apply anything.</p>
+                    </div>
+                </div>
+
+                <p class="problem-transition">That's exactly why this guide was created.</p>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        EBOOK SOLUTION
+        ============================================================ -->
+        <section class="solution" id="solution">
+            <div class="container solution-inner">
+                <div class="solution-visual">
+                    <div class="ebook-mockup small">
+                        <div class="ebook-cover">
+                            <span class="ebook-label">EBOOK COVER</span>
+                            <div class="ebook-title-placeholder">[EBOOK_NAME]</div>
+                            <div class="ebook-sub-placeholder">A Practical Guide</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="solution-content">
+                    <span class="section-label">ONE GUIDE. ONE CLEAR PATH.</span>
+                    <h2 class="section-title">Everything You Need, Organized in One Place.</h2>
+                    <p class="solution-text">
+                        Instead of searching through scattered information, you get a structured guide you can move
+                        through at your own pace — from start to finish.
+                    </p>
+                    <ul class="solution-points">
+                        <li>✓ Clear explanations that actually make sense</li>
+                        <li>✓ Practical steps you can take immediately</li>
+                        <li>✓ Structured chapters that build on each other</li>
+                        <li>✓ Easy reference whenever you need a refresher</li>
+                    </ul>
+                    <a href="product.html" class="btn btn-secondary">Explore The Guide</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        WHAT'S INSIDE
+        ============================================================ -->
+        <section class="inside" id="inside">
+            <div class="container">
+                <div class="section-label">CONTENT OVERVIEW</div>
+                <h2 class="section-title">What's Inside the Guide</h2>
+                <p class="section-subtitle">
+                    Every chapter is designed to build your understanding step by step.
+                </p>
+
+                <div class="inside-grid">
+                    <div class="inside-item">
+                        <span class="inside-chapter">CHAPTER 01</span>
+                        <h3>Understanding the Foundation</h3>
+                        <p>Start with the core concepts that everything else builds on. No fluff — just the essentials you need to move forward.</p>
+                    </div>
+                    <div class="inside-item">
+                        <span class="inside-chapter">CHAPTER 02</span>
+                        <h3>The Key Principles</h3>
+                        <p>Learn the fundamental principles that guide the entire process. These are the ideas that make everything else click.</p>
+                    </div>
+                    <div class="inside-item">
+                        <span class="inside-chapter">CHAPTER 03</span>
+                        <h3>The Practical Framework</h3>
+                        <p>A simple, repeatable framework you can apply to any situation. Know exactly what to do and when to do it.</p>
+                    </div>
+                    <div class="inside-item">
+                        <span class="inside-chapter">CHAPTER 04</span>
+                        <h3>Putting It Into Practice</h3>
+                        <p>Real-world application. Take what you've learned and start using it immediately with clear action steps.</p>
+                    </div>
+                    <div class="inside-item">
+                        <span class="inside-chapter">CHAPTER 05</span>
+                        <h3>Common Mistakes to Avoid</h3>
+                        <p>Save yourself time and frustration by learning from the most common pitfalls — so you don't have to make them yourself.</p>
+                    </div>
+                    <div class="inside-item">
+                        <span class="inside-chapter">CHAPTER 06</span>
+                        <h3>Next Steps &amp; Growth</h3>
+                        <p>Where to go from here. A clear path forward so you can continue building on what you've learned.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        EBOOK PREVIEW
+        ============================================================ -->
+        <section class="preview" id="preview">
+            <div class="container">
+                <div class="section-label">SNEAK PEEK</div>
+                <h2 class="section-title">Take a Look Inside.</h2>
+                <p class="section-subtitle">
+                    See the quality and clarity of the guide before you decide.
+                </p>
+
+                <div class="preview-scroll">
+                    <div class="preview-item">
+                        <div class="preview-page">
+                            <span class="preview-label">COVER</span>
+                            <div class="preview-content">
+                                <div class="preview-title">[EBOOK_NAME]</div>
+                                <div class="preview-sub">A Practical Guide</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="preview-item">
+                        <div class="preview-page">
+                            <span class="preview-label">CONTENTS</span>
+                            <div class="preview-content">
+                                <div class="preview-heading">Table of Contents</div>
+                                <ul class="preview-toc">
+                                    <li>01. Understanding the Foundation</li>
+                                    <li>02. The Key Principles</li>
+                                    <li>03. The Practical Framework</li>
+                                    <li>04. Putting It Into Practice</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="preview-item">
+                        <div class="preview-page">
+                            <span class="preview-label">CHAPTER</span>
+                            <div class="preview-content">
+                                <div class="preview-heading">The Practical Framework</div>
+                                <p>A simple, repeatable framework you can apply to any situation. Know exactly what to do and when to do it.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="preview-item">
+                        <div class="preview-page">
+                            <span class="preview-label">CHECKLIST</span>
+                            <div class="preview-content">
+                                <div class="preview-heading">Action Checklist</div>
+                                <ul class="preview-checklist">
+                                    <li>✓ Define your primary goal</li>
+                                    <li>✓ Break it into smaller steps</li>
+                                    <li>✓ Identify key resources</li>
+                                    <li>✓ Set a realistic timeline</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="preview-item">
+                        <div class="preview-page">
+                            <span class="preview-label">ACTION</span>
+                            <div class="preview-content">
+                                <div class="preview-heading">Your Next Step</div>
+                                <p>Put what you've learned into practice with a clear, actionable plan.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="preview-cta">
+                    <a href="#buy" class="btn btn-primary">Get The Full Guide</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        BONUSES
+        ============================================================ -->
+        <section class="bonuses" id="bonuses">
+            <div class="container">
+                <div class="section-label">BONUS RESOURCES</div>
+                <h2 class="section-title">Your Purchase Includes More Than The Guide.</h2>
+                <p class="section-subtitle">
+                    Get these additional resources to help you take action faster.
+                </p>
+
+                <div class="bonuses-grid">
+                    <div class="bonus-card">
+                        <span class="bonus-number">BONUS #1</span>
+                        <h3>Quick-Start Checklist</h3>
+                        <p>A one-page checklist that helps you get started immediately — so you don't waste time figuring out where to begin.</p>
+                    </div>
+                    <div class="bonus-card">
+                        <span class="bonus-number">BONUS #2</span>
+                        <h3>Action Worksheet</h3>
+                        <p>A printable worksheet to help you apply what you're learning. Fill it out as you go and track your progress.</p>
+                    </div>
+                    <div class="bonus-card">
+                        <span class="bonus-number">BONUS #3</span>
+                        <h3>Reference Cheat Sheet</h3>
+                        <p>A one-page summary of the key concepts and steps — perfect for quick reference whenever you need a reminder.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        BENEFITS
+        ============================================================ -->
+        <section class="benefits" id="benefits">
+            <div class="container">
+                <div class="section-label">WHY IT WORKS</div>
+                <h2 class="section-title">Designed to Help You Move From Information to Action.</h2>
+
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <h3>Learn Without the Noise</h3>
+                        <p>Everything is organized in one focused resource. No distractions, no scattered information.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <h3>Follow a Clear Process</h3>
+                        <p>Know what to do instead of figuring everything out yourself. The steps are laid out for you.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <h3>Come Back Anytime</h3>
+                        <p>Keep the guide as a reference whenever you need it. It's yours to return to again and again.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <h3>Read at Your Own Pace</h3>
+                        <p>Use it on desktop, tablet or phone whenever it suits you. No rush, no pressure.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        TESTIMONIALS
+        ============================================================ -->
+        <section class="testimonials" id="testimonials">
+            <div class="container">
+                <div class="section-label">READER FEEDBACK</div>
+                <h2 class="section-title">What Readers Are Saying</h2>
+
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <blockquote>
+                            "This finally gave me a clear process instead of another collection of random tips. I actually know what to do now."
+                        </blockquote>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">SM</div>
+                            <div>
+                                <span class="testimonial-name">Sarah M.</span>
+                                <span class="testimonial-role">[Replace with verified customer testimonial]</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <blockquote>
+                            "I've bought other guides before, but this one is different. It's practical, straightforward, and actually useful."
+                        </blockquote>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">JR</div>
+                            <div>
+                                <span class="testimonial-name">James R.</span>
+                                <span class="testimonial-role">[Replace with verified customer testimonial]</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card">
+                        <blockquote>
+                            "The structure of this guide made all the difference. I could finally see the whole picture and take action."
+                        </blockquote>
+                        <div class="testimonial-author">
+                            <div class="testimonial-avatar">AL</div>
+                            <div>
+                                <span class="testimonial-name">Aisha L.</span>
+                                <span class="testimonial-role">[Replace with verified customer testimonial]</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        CREATOR
+        ============================================================ -->
+        <section class="creator" id="creator">
+            <div class="container creator-inner">
+                <div class="creator-photo">
+                    <div class="creator-placeholder">CREATOR PHOTO</div>
+                </div>
+                <div class="creator-content">
+                    <span class="section-label">ABOUT THE CREATOR</span>
+                    <h2 class="section-title">Meet [CREATOR_NAME]</h2>
+                    <p class="creator-bio">
+                        [CREATOR_NAME] is the creator behind this guide. With [X] years of experience in [relevant field],
+                        they've helped countless people [specific outcome].
+                    </p>
+                    <div class="creator-story">
+                        <h3>Why I created this guide</h3>
+                        <p>
+                            "I created this guide because I saw too many people struggling with the same challenges —
+                            not because they weren't capable, but because they didn't have a clear, structured path to follow."
+                        </p>
+                    </div>
+                    <a href="about.html" class="btn btn-secondary">Learn More About [CREATOR_NAME]</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        FAQ (homepage preview)
+        ============================================================ -->
+        <section class="faq" id="faq">
+            <div class="container">
+                <div class="section-label">QUESTIONS?</div>
+                <h2 class="section-title">Frequently Asked Questions</h2>
+
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            What exactly do I get after purchasing?
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>You get the complete digital ebook in PDF format, plus all bonus resources (checklist, worksheet, and cheat sheet). Everything is available for instant download.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            Is this a physical book?
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>No, this is a digital ebook. You'll receive a PDF that you can read on any device — computer, tablet, or phone.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            How do I access the ebook?
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Immediately after purchase, you'll receive a download link via email. You can also access it from your account dashboard.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            Can I read it on my phone?
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Yes, the PDF is optimized for all screen sizes and works perfectly on phones, tablets, and computers.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            Who is this guide for?
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>This guide is for anyone who wants a clear, structured path to [specific outcome]. It's designed for both beginners and those with some experience.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-more">
+                    <a href="faq.html" class="btn btn-secondary">View All FAQs</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        PRICE / OFFER
+        ============================================================ -->
+        <section class="price" id="buy">
+            <div class="container">
+                <div class="price-card">
+                    <span class="section-label">GET THE GUIDE</span>
+                    <h2 class="section-title">[EBOOK_NAME]</h2>
+                    <div class="price-amount">
+                        <span class="price-currency">$</span><span class="price-number">[PRICE]</span>
+                        <span class="price-label">ONE-TIME PAYMENT</span>
+                    </div>
+                    <ul class="price-features">
+                        <li>✓ Full ebook — 120+ pages</li>
+                        <li>✓ Instant digital access</li>
+                        <li>✓ Bonus resources (checklist, worksheet, cheat sheet)</li>
+                        <li>✓ Lifetime access — read anytime</li>
+                    </ul>
+                    <a href="[CHECKOUT_URL]" class="btn btn-primary btn-large">Buy Now</a>
+                    <p class="price-trust">Secure checkout &bull; Instant digital delivery</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        FINAL CTA
+        ============================================================ -->
+        <section class="final-cta" id="final-cta">
+            <div class="container final-cta-inner">
+                <h2 class="final-cta-title">Ready to Stop Searching and Start Moving Forward?</h2>
+                <p class="final-cta-text">
+                    Get the guide and follow a clearer path from where you are to where you want to be.
+                </p>
+                <a href="#buy" class="btn btn-primary btn-large">Buy Now</a>
+                <p class="final-cta-trust">Instant access &bull; One-time payment &bull; Read anywhere</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div class="footer-col">
+                <a href="index.html" class="logo"><span class="logo-text">[BRAND_NAME]</span></a>
+                <p class="footer-desc">A practical guide designed to help you understand the process, take the right steps, and make real progress.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="product.html">Product</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms &amp; Conditions</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Follow</h4>
+                <ul>
+                    <li><a href="[INSTAGRAM_URL]" target="_blank" rel="noopener">Instagram</a></li>
+                    <li><a href="[YOUTUBE_URL]" target="_blank" rel="noopener">YouTube</a></li>
+                    <li><a href="#" target="_blank" rel="noopener">LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container footer-bottom-inner">
+                <p>&copy; 2026 [BRAND_NAME]. All rights reserved.</p>
+                <p class="footer-disclaimer">This is a placeholder disclaimer. Replace with actual legal text.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+    <!-- ============================================================
+    JAVASCRIPT
+    ============================================================ -->
+    <script>
+        // ============================================================
+        // HEADER SCROLL
+        // ============================================================
+        const header = document.getElementById('siteHeader');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+            if (currentScroll > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            lastScroll = currentScroll;
+        });
+
+        // ============================================================
+        // MOBILE MENU
+        // ============================================================
+        const hamburger = document.getElementById('hamburger');
+        const navMobile = document.getElementById('navMobile');
+
+        hamburger.addEventListener('click', () => {
+            const isOpen = hamburger.classList.toggle('active');
+            navMobile.classList.toggle('open');
+            hamburger.setAttribute('aria-expanded', isOpen);
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.nav-mobile-list a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMobile.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // ============================================================
+        // FAQ ACCORDION
+        // ============================================================
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const parent = button.closest('.faq-item');
+                const isOpen = parent.classList.contains('open');
+
+                // Close all siblings in the same container
+                const container = parent.closest('.faq-list') || parent.parentElement;
+                container.querySelectorAll('.faq-item').forEach(item => {
+                    if (item !== parent) {
+                        item.classList.remove('open');
+                    }
+                });
+
+                if (isOpen) {
+                    parent.classList.remove('open');
+                } else {
+                    parent.classList.add('open');
+                }
+            });
+        });
+
+        // ============================================================
+        // BACK TO TOP
+        // ============================================================
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ============================================================
+        // SMOOTH SCROLL FOR ANCHOR LINKS
+        // ============================================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const targetEl = document.querySelector(targetId);
+                if (targetEl) {
+                    e.preventDefault();
+                    targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
