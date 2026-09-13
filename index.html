@@ -339,6 +339,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            width: 100%;
         }
 
         .ebook-mockup {
@@ -353,7 +354,7 @@
             align-items: center;
             justify-content: center;
             border: 1px solid var(--border);
-            overflow: hidden;
+            overflow: visible;
         }
 
         .ebook-mockup img {
@@ -361,6 +362,7 @@
             height: 100%;
             object-fit: cover;
             border-radius: 16px;
+            display: block;
         }
 
         .ebook-cover {
@@ -394,22 +396,27 @@
             padding: 6px 14px;
             border-radius: 40px;
             font-size: 0.75rem;
-            font-weight: 500;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
             border: 1px solid var(--border);
+            white-space: nowrap;
+            z-index: 3;
+            color: var(--text-primary);
+            line-height: 1.4;
+            letter-spacing: 0.2px;
         }
 
         .badge-1 {
-            top: 10%;
-            left: -10%;
+            top: 8%;
+            left: -12%;
         }
         .badge-2 {
-            bottom: 20%;
-            right: -8%;
+            bottom: 18%;
+            right: -10%;
         }
         .badge-3 {
-            bottom: 40%;
-            left: -12%;
+            bottom: 42%;
+            left: -14%;
         }
 
         .ebook-mockup.small {
@@ -1131,11 +1138,24 @@
                 font-size: 2.2rem;
             }
 
-            .mockup-badge {
-                display: none;
-            }
             .ebook-mockup {
                 max-width: 280px;
+            }
+            .mockup-badge {
+                font-size: 0.7rem;
+                padding: 5px 12px;
+            }
+            .badge-1 {
+                top: 6%;
+                left: -8%;
+            }
+            .badge-2 {
+                bottom: 14%;
+                right: -6%;
+            }
+            .badge-3 {
+                bottom: 36%;
+                left: -10%;
             }
         }
 
@@ -1157,6 +1177,48 @@
             }
             .final-cta-title {
                 font-size: 1.8rem;
+            }
+
+            .ebook-mockup {
+                max-width: 230px;
+            }
+            .mockup-badge {
+                font-size: 0.65rem;
+                padding: 4px 10px;
+            }
+            .badge-1 {
+                top: 5%;
+                left: -6%;
+            }
+            .badge-2 {
+                bottom: 12%;
+                right: -4%;
+            }
+            .badge-3 {
+                bottom: 32%;
+                left: -8%;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .ebook-mockup {
+                max-width: 200px;
+            }
+            .mockup-badge {
+                font-size: 0.6rem;
+                padding: 3px 8px;
+            }
+            .badge-1 {
+                top: 4%;
+                left: -4%;
+            }
+            .badge-2 {
+                bottom: 10%;
+                right: -3%;
+            }
+            .badge-3 {
+                bottom: 28%;
+                left: -5%;
             }
         }
     </style>
