@@ -566,7 +566,7 @@
         }
 
         /* ============================================================
-           PREVIEW
+           PREVIEW  (UPDATED: full image, no crop, responsive TOC)
            ============================================================ */
         .preview {
             background: var(--bg);
@@ -591,7 +591,7 @@
             border-radius: 12px;
             padding: 24px;
             border: 1px solid var(--border);
-            height: 340px;
+            min-height: 340px;           /* allow growth for long content */
             display: flex;
             flex-direction: column;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
@@ -633,13 +633,15 @@
         .preview-checklist {
             list-style: none;
             padding: 0;
+            margin: 0;
         }
 
         .preview-toc li,
         .preview-checklist li {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--text-secondary);
             padding: 4px 0;
+            line-height: 1.4;
         }
 
         .preview-checklist li {
@@ -649,6 +651,17 @@
         .preview-cta {
             text-align: center;
             margin-top: 20px;
+        }
+
+        /* cover image inside preview – full image, no crop */
+        .preview-cover-img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;          /* ensure no cropping */
+            border-radius: 8px;
+            display: block;
+            margin-bottom: 12px;
+            border: 1px solid var(--border);
         }
 
         /* ============================================================
@@ -1171,6 +1184,19 @@
             .final-cta-title {
                 font-size: 2.2rem;
             }
+
+            /* preview tweaks for mobile */
+            .preview-item {
+                flex: 0 0 240px;
+            }
+            .preview-page {
+                padding: 16px;
+                min-height: 300px;
+            }
+            .preview-toc li {
+                font-size: 0.78rem;
+                padding: 3px 0;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1192,11 +1218,31 @@
             .final-cta-title {
                 font-size: 1.8rem;
             }
+
+            /* preview further tweaks */
+            .preview-item {
+                flex: 0 0 220px;
+            }
+            .preview-page {
+                padding: 14px;
+                min-height: 280px;
+            }
+            .preview-toc li {
+                font-size: 0.72rem;
+                padding: 2px 0;
+            }
         }
 
         @media (max-width: 380px) {
             .hero-title {
                 font-size: 2rem;
+            }
+
+            .preview-item {
+                flex: 0 0 200px;
+            }
+            .preview-toc li {
+                font-size: 0.68rem;
             }
         }
     </style>
@@ -1320,7 +1366,7 @@
         <section class="solution" id="solution">
             <div class="container solution-inner">
                 <div class="solution-visual">
-                    <!-- UPDATED: full image, no crop -->
+                    <!-- Full image, no crop -->
                     <div class="ebook-mockup small">
                         <img src="https://ebook.faizkhan765644.workers.dev/Atomic%20Habits.jpg" alt="Practical Guide ebook cover" />
                     </div>
@@ -1390,7 +1436,7 @@
         </section>
 
         <!-- ============================================================
-        EBOOK PREVIEW
+        EBOOK PREVIEW  (UPDATED: full cover image, responsive TOC)
         ============================================================ -->
         <section class="preview" id="preview">
             <div class="container">
@@ -1401,29 +1447,38 @@
                 </p>
 
                 <div class="preview-scroll">
+                    <!-- Cover card with full image -->
                     <div class="preview-item">
                         <div class="preview-page">
                             <span class="preview-label">COVER</span>
                             <div class="preview-content">
+                                <img src="https://ebook.faizkhan765644.workers.dev/Atomic%20Habits.jpg" alt="Ebook Cover" class="preview-cover-img" />
                                 <div class="preview-title">[EBOOK_NAME]</div>
                                 <div class="preview-sub">A Practical Guide</div>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Contents card – clean, responsive TOC -->
                     <div class="preview-item">
                         <div class="preview-page">
                             <span class="preview-label">CONTENTS</span>
                             <div class="preview-content">
                                 <div class="preview-heading">Table of Contents</div>
                                 <ul class="preview-toc">
-                                    <li>01. Understanding the Foundation</li>
-                                    <li>02. The Key Principles</li>
-                                    <li>03. The Practical Framework</li>
-                                    <li>04. Putting It Into Practice</li>
+                                    <li>1. The Fundamentals — Power of atomic habits, identity, 4 steps</li>
+                                    <li>2. Make It Obvious — Cues, environment, self-control</li>
+                                    <li>3. Make It Attractive — Irresistible habits, social influence</li>
+                                    <li>4. Make It Easy — Reduce friction, Two-Minute Rule</li>
+                                    <li>5. Make It Satisfying — Daily consistency, accountability</li>
+                                    <li>6. Advanced Tactics — Talent, Goldilocks Rule, downsides</li>
+                                    <li>7. Conclusion &amp; Appendix — Lasting results, further reading</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Chapter card -->
                     <div class="preview-item">
                         <div class="preview-page">
                             <span class="preview-label">CHAPTER</span>
@@ -1433,6 +1488,8 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Checklist card -->
                     <div class="preview-item">
                         <div class="preview-page">
                             <span class="preview-label">CHECKLIST</span>
@@ -1447,6 +1504,8 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Action card -->
                     <div class="preview-item">
                         <div class="preview-page">
                             <span class="preview-label">ACTION</span>
