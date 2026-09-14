@@ -31,6 +31,7 @@
             --light-accent: #E8DED4;
             --white: #FFFFFF;
             --border: #DED8D0;
+            --success: #2E7D32;
 
             --font-heading: 'Playfair Display', serif;
             --font-body: 'Inter', sans-serif;
@@ -436,7 +437,7 @@
             border-radius: 16px;
             border: 1px solid var(--border);
             overflow: hidden;
-            aspect-ratio: auto;          /* allow full image height */
+            aspect-ratio: auto;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -444,8 +445,8 @@
 
         .solution-visual .ebook-mockup.small img {
             width: 100%;
-            height: auto;                /* show full image */
-            object-fit: contain;         /* ensure no cropping */
+            height: auto;
+            object-fit: contain;
             border-radius: 16px;
             display: block;
         }
@@ -566,7 +567,7 @@
         }
 
         /* ============================================================
-           PREVIEW  (UPDATED: full image, no crop, responsive TOC)
+           PREVIEW
            ============================================================ */
         .preview {
             background: var(--bg);
@@ -591,7 +592,7 @@
             border-radius: 12px;
             padding: 24px;
             border: 1px solid var(--border);
-            min-height: 340px;           /* allow growth for long content */
+            min-height: 340px;
             display: flex;
             flex-direction: column;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
@@ -653,11 +654,10 @@
             margin-top: 20px;
         }
 
-        /* cover image inside preview – full image, no crop */
         .preview-cover-img {
             width: 100%;
             height: auto;
-            object-fit: contain;          /* ensure no cropping */
+            object-fit: contain;
             border-radius: 8px;
             display: block;
             margin-bottom: 12px;
@@ -904,7 +904,7 @@
         }
 
         /* ============================================================
-           PRICE
+           PRICE  (UPDATED with product details)
            ============================================================ */
         .price {
             background: var(--bg);
@@ -912,31 +912,138 @@
         }
 
         .price-card {
-            max-width: 600px;
+            max-width: 820px;
             margin: 0 auto;
             background: var(--white);
             padding: 48px 40px;
             border-radius: 20px;
-            text-align: center;
             border: 1px solid var(--border);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
         }
 
+        .price-layout {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 40px;
+            align-items: start;
+            text-align: left;
+        }
+
+        .price-image-wrapper {
+            position: relative;
+            background: var(--white);
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .price-image-wrapper img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .price-image-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: var(--accent);
+            color: var(--white);
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .price-details {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .price-details .section-label {
+            margin-bottom: 0;
+        }
+
+        .price-book-title {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin: 0;
+        }
+
+        .price-book-author {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .price-book-author strong {
+            color: var(--text-primary);
+        }
+
+        .price-book-rating {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .price-book-rating .stars {
+            color: #E6A817;
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .price-book-desc {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
         .price-amount {
-            margin: 20px 0;
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 4px 0;
         }
 
         .price-currency {
-            font-size: 2rem;
-            font-weight: 300;
-            vertical-align: top;
+            font-size: 1.6rem;
+            font-weight: 400;
             line-height: 1;
         }
 
         .price-number {
-            font-size: 4rem;
+            font-size: 3rem;
             font-weight: 700;
             font-family: var(--font-heading);
+            line-height: 1;
+        }
+
+        .price-original {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            text-decoration: line-through;
+        }
+
+        .price-discount {
+            background: var(--success);
+            color: var(--white);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
         }
 
         .price-label {
@@ -951,21 +1058,34 @@
         .price-features {
             list-style: none;
             padding: 0;
-            margin: 24px 0;
-            text-align: left;
-            display: inline-block;
+            margin: 8px 0 0;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
         }
 
         .price-features li {
-            padding: 6px 0;
-            font-size: 1rem;
+            padding: 4px 0;
+            font-size: 0.95rem;
             color: var(--text-secondary);
         }
 
+        .price-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .price-actions .btn {
+            width: 100%;
+        }
+
         .price-trust {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--text-secondary);
-            margin-top: 16px;
+            margin-top: 8px;
+            text-align: center;
         }
 
         /* ============================================================
@@ -1126,6 +1246,10 @@
             .footer-inner {
                 grid-template-columns: 1fr 1fr;
             }
+            .price-layout {
+                grid-template-columns: 220px 1fr;
+                gap: 30px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -1185,7 +1309,6 @@
                 font-size: 2.2rem;
             }
 
-            /* preview tweaks for mobile */
             .preview-item {
                 flex: 0 0 240px;
             }
@@ -1196,6 +1319,30 @@
             .preview-toc li {
                 font-size: 0.78rem;
                 padding: 3px 0;
+            }
+
+            /* price layout stacks */
+            .price-layout {
+                grid-template-columns: 1fr;
+                gap: 24px;
+                text-align: center;
+            }
+            .price-image-wrapper {
+                max-width: 220px;
+                margin: 0 auto;
+            }
+            .price-details {
+                align-items: center;
+                text-align: center;
+            }
+            .price-book-rating {
+                justify-content: center;
+            }
+            .price-amount {
+                justify-content: center;
+            }
+            .price-features {
+                align-items: center;
             }
         }
 
@@ -1219,7 +1366,6 @@
                 font-size: 1.8rem;
             }
 
-            /* preview further tweaks */
             .preview-item {
                 flex: 0 0 220px;
             }
@@ -1230,6 +1376,13 @@
             .preview-toc li {
                 font-size: 0.72rem;
                 padding: 2px 0;
+            }
+
+            .price-book-title {
+                font-size: 1.4rem;
+            }
+            .price-number {
+                font-size: 2.4rem;
             }
         }
 
@@ -1366,7 +1519,6 @@
         <section class="solution" id="solution">
             <div class="container solution-inner">
                 <div class="solution-visual">
-                    <!-- Full image, no crop -->
                     <div class="ebook-mockup small">
                         <img src="https://ebook.faizkhan765644.workers.dev/Atomic%20Habits.jpg" alt="Practical Guide ebook cover" />
                     </div>
@@ -1436,7 +1588,7 @@
         </section>
 
         <!-- ============================================================
-        EBOOK PREVIEW  (UPDATED: full cover image, responsive TOC)
+        EBOOK PREVIEW
         ============================================================ -->
         <section class="preview" id="preview">
             <div class="container">
@@ -1447,19 +1599,19 @@
                 </p>
 
                 <div class="preview-scroll">
-                    <!-- Cover card with full image -->
+                    <!-- Cover card -->
                     <div class="preview-item">
                         <div class="preview-page">
                             <span class="preview-label">COVER</span>
                             <div class="preview-content">
                                 <img src="https://ebook.faizkhan765644.workers.dev/Atomic%20Habits.jpg" alt="Ebook Cover" class="preview-cover-img" />
-                                <div class="preview-title">Atomic habits </div>
+                                <div class="preview-title">Atomic habits</div>
                                 <div class="preview-sub">A Practical Guide</div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Contents card – clean, responsive TOC -->
+                    <!-- Contents card -->
                     <div class="preview-item">
                         <div class="preview-page">
                             <span class="preview-label">CONTENTS</span>
@@ -1724,25 +1876,56 @@
         </section>
 
         <!-- ============================================================
-        PRICE / OFFER
+        PRICE / OFFER  (UPDATED: product details + image)
         ============================================================ -->
         <section class="price" id="buy">
             <div class="container">
                 <div class="price-card">
-                    <span class="section-label">GET THE GUIDE</span>
-                    <h2 class="section-title">[EBOOK_NAME]</h2>
-                    <div class="price-amount">
-                        <span class="price-currency">$</span><span class="price-number">[PRICE]</span>
-                        <span class="price-label">ONE-TIME PAYMENT</span>
+                    <div class="price-layout">
+                        <!-- Product Image -->
+                        <div class="price-image-wrapper">
+                            <span class="price-image-badge">#1 Best Seller</span>
+                            <img src="https://ebook.faizkhan765644.workers.dev/Atomic%20Habits.jpg" alt="Atomic Habits — The life-changing million-copy #1 bestseller by James Clear" />
+                        </div>
+
+                        <!-- Product Details + CTA -->
+                        <div class="price-details">
+                            <span class="section-label">GET THE GUIDE</span>
+                            <h2 class="price-book-title">Atomic Habits: The life-changing million-copy #1 bestseller</h2>
+                            <p class="price-book-author">by <strong>James Clear</strong> &nbsp;|&nbsp; Kindle Edition</p>
+
+                            <div class="price-book-rating">
+                                <span class="stars">★★★★★</span>
+                                <span>4.6 out of 5 stars &nbsp;·&nbsp; 113,009 ratings</span>
+                            </div>
+
+                            <p class="price-book-desc">
+                                Transform your life with tiny changes in behaviour, starting now. World-renowned habits expert James Clear reveals exactly how minuscule changes can grow into life-altering outcomes — the compound effect of hundreds of small decisions.
+                            </p>
+
+                            <!-- Price -->
+                            <div class="price-amount">
+                                <span class="price-currency">$</span><span class="price-number">4.99</span>
+                                <span class="price-original">$8.99</span>
+                                <span class="price-discount">–44%</span>
+                            </div>
+                            <span class="price-label">ONE-TIME PAYMENT &nbsp;·&nbsp; DIGITAL LIST PRICE: $8.99</span>
+
+                            <!-- Features -->
+                            <ul class="price-features">
+                                <li>✓ Full ebook — 277 pages</li>
+                                <li>✓ Instant digital access (PDF)</li>
+                                <li>✓ Bonus resources (checklist, worksheet, cheat sheet)</li>
+                                <li>✓ Lifetime access — read anytime</li>
+                            </ul>
+
+                            <!-- CTA -->
+                            <div class="price-actions">
+                                <a href="[CHECKOUT_URL]" class="btn btn-primary btn-large">Buy Now — $4.99</a>
+                            </div>
+                            <p class="price-trust">Secure checkout &bull; Instant digital delivery &bull; Read on any device</p>
+                        </div>
                     </div>
-                    <ul class="price-features">
-                        <li>✓ Full ebook — 120+ pages</li>
-                        <li>✓ Instant digital access</li>
-                        <li>✓ Bonus resources (checklist, worksheet, cheat sheet)</li>
-                        <li>✓ Lifetime access — read anytime</li>
-                    </ul>
-                    <a href="[CHECKOUT_URL]" class="btn btn-primary btn-large">Buy Now</a>
-                    <p class="price-trust">Secure checkout &bull; Instant digital delivery</p>
                 </div>
             </div>
         </section>
@@ -1769,7 +1952,7 @@
     <footer class="site-footer">
         <div class="container footer-inner">
             <div class="footer-col">
-                <a href="index.html" class="logo"><span class="logo-text">[BRAND_NAME]</span></a>
+                <a href="index.html" class="logo"><span class="logo-text">CLARITY PRESS</span></a>
                 <p class="footer-desc">A practical guide designed to help you understand the process, take the right steps, and make real progress.</p>
             </div>
             <div class="footer-col">
@@ -1800,7 +1983,7 @@
         </div>
         <div class="footer-bottom">
             <div class="container footer-bottom-inner">
-                <p>&copy; 2026 [BRAND_NAME]. All rights reserved.</p>
+                <p>&copy; 2026 Clarity Press. All rights reserved.</p>
                 <p class="footer-disclaimer">This is a placeholder disclaimer. Replace with actual legal text.</p>
             </div>
         </div>
@@ -1858,7 +2041,6 @@
                 const parent = button.closest('.faq-item');
                 const isOpen = parent.classList.contains('open');
 
-                // Close all siblings in the same container
                 const container = parent.closest('.faq-list') || parent.parentElement;
                 container.querySelectorAll('.faq-item').forEach(item => {
                     if (item !== parent) {
