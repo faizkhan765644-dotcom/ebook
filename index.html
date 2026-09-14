@@ -419,9 +419,35 @@
             left: -14%;
         }
 
-        .ebook-mockup.small {
-            max-width: 240px;
+        /* ------------------------------------------------------------
+           SOLUTION VISUAL - FULL IMAGE, NO CROP
+           ------------------------------------------------------------ */
+        .solution-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        .solution-visual .ebook-mockup.small {
+            max-width: 280px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+            background: var(--white);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            aspect-ratio: auto;          /* allow full image height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .solution-visual .ebook-mockup.small img {
+            width: 100%;
+            height: auto;                /* show full image */
+            object-fit: contain;         /* ensure no cropping */
+            border-radius: 16px;
+            display: block;
         }
 
         /* ============================================================
@@ -1294,12 +1320,9 @@
         <section class="solution" id="solution">
             <div class="container solution-inner">
                 <div class="solution-visual">
+                    <!-- UPDATED: full image, no crop -->
                     <div class="ebook-mockup small">
-                        <div class="ebook-cover">
-                            <span class="ebook-label">EBOOK COVER</span>
-                            <div class="ebook-title-placeholder">[EBOOK_NAME]</div>
-                            <div class="ebook-sub-placeholder">A Practical Guide</div>
-                        </div>
+                        <img src="https://ebook.faizkhan765644.workers.dev/Atomic%20Habits.jpg" alt="Practical Guide ebook cover" />
                     </div>
                 </div>
                 <div class="solution-content">
