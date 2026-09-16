@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product — Clarity Press</title>
+    <meta name="description" content="Browse our collection of practical guides. Five dummy products for demonstration." />
+    <link rel="canonical" href="https://yourdomain.com/product.html" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Product — Clarity Press" />
+    <meta property="og:description" content="Browse our collection of practical guides. Five dummy products for demonstration." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://yourdomain.com/product.html" />
+    <meta property="og:image" content="https://yourdomain.com/assets/images/og-image.jpg" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <style>
+        /* ============================================================
+           CSS VARIABLES & RESET
+           ============================================================ */
+        :root {
+            --bg: #F8F6F1;
+            --text-primary: #1D1D1B;
+            --text-secondary: #6F6A62;
+            --accent: #9B6B4A;
+            --light-accent: #E8DED4;
+            --white: #FFFFFF;
+            --border: #DED8D0;
+            --success: #2E7D32;
+
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+
+            --max-width: 1200px;
+            --section-padding: 80px 0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ============================================================
+           BUTTONS
+           ============================================================ */
+        .btn {
+            display: inline-block;
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 14px 36px;
+            border-radius: 40px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--white);
+            box-shadow: 0 4px 12px rgba(155, 107, 74, 0.25);
+        }
+
+        .btn-primary:hover {
+            background-color: #7d5840;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(155, 107, 74, 0.35);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--light-accent);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .btn-small {
+            padding: 10px 24px;
+            font-size: 0.9rem;
+        }
+
+        .btn-large {
+            padding: 18px 48px;
+            font-size: 1.2rem;
+        }
+
+        .btn-block {
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* ============================================================
+           HEADER
+           ============================================================ */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: transparent;
+            transition: all 0.3s ease;
+            padding: 16px 0;
+        }
+
+        .site-header.scrolled {
+            background: rgba(248, 246, 241, 0.92);
+            backdrop-filter: blur(6px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.04);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text {
+            display: inline-block;
+        }
+
+        .nav-desktop .nav-list {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-desktop .nav-list a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: color 0.2s;
+        }
+
+        .nav-desktop .nav-list a:hover,
+        .nav-desktop .nav-list a.active {
+            color: var(--text-primary);
+        }
+
+        .nav-desktop .nav-list .btn-primary {
+            color: var(--white);
+        }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .hamburger-line {
+            width: 28px;
+            height: 2px;
+            background: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hamburger.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Mobile nav */
+        .nav-mobile {
+            display: none;
+            background: var(--bg);
+            padding: 20px 24px;
+            border-top: 1px solid var(--border);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+        }
+
+        .nav-mobile.open {
+            display: block;
+        }
+
+        .nav-mobile-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .nav-mobile-list a {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .nav-mobile-list .btn-primary {
+            margin-top: 8px;
+        }
+
+        /* ============================================================
+           SECTIONS – COMMON
+           ============================================================ */
+        section {
+            padding: var(--section-padding);
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 650px;
+            margin-bottom: 48px;
+        }
+
+        /* ============================================================
+           PRODUCTS GRID
+           ============================================================ */
+        .products-section {
+            padding: 60px 0 80px;
+            background: var(--white);
+        }
+
+        .products-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .products-header .section-subtitle {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .product-card {
+            background: var(--bg);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+            border-color: var(--accent);
+        }
+
+        .product-image-wrapper {
+            position: relative;
+            background: var(--white);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid var(--border);
+            min-height: 260px;
+        }
+
+        .product-image-wrapper img {
+            max-height: 220px;
+            width: auto;
+            max-width: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--accent);
+            color: var(--white);
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 40px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .product-badge.bestseller {
+            background: #b8860b;
+        }
+
+        .product-badge.new {
+            background: var(--success);
+        }
+
+        .product-content {
+            padding: 24px 20px 28px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .product-title {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 6px;
+        }
+
+        .product-author {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .product-author strong {
+            color: var(--text-primary);
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .product-rating .stars {
+            color: #E6A817;
+            letter-spacing: 1px;
+            font-size: 0.95rem;
+        }
+
+        .product-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex: 1;
+        }
+
+        .product-price-row {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .product-price {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1;
+        }
+
+        .product-original {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-decoration: line-through;
+        }
+
+        .product-discount {
+            background: var(--success);
+            color: var(--white);
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 2px 10px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .product-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .product-actions .btn {
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 0.95rem;
+        }
+
+        .product-actions .btn-secondary {
+            font-size: 0.85rem;
+            padding: 10px 20px;
+        }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        .site-footer {
+            background: var(--text-primary);
+            color: #ccc;
+            padding: 60px 0 20px;
+        }
+
+        .footer-inner {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-col .logo {
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+
+        .footer-desc {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            opacity: 0.7;
+            max-width: 300px;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            font-weight: 600;
+            margin-bottom: 16px;
+            font-size: 1rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .footer-col ul li a:hover {
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            padding-top: 24px;
+        }
+
+        .footer-bottom-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+
+        /* ============================================================
+           BACK TO TOP
+           ============================================================ */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: var(--white);
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: #7d5840;
+            transform: translateY(-3px);
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 1024px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+            .footer-inner {
+                grid-template-columns: 1fr 1fr;
+            }
+            .section-title {
+                font-size: 2.6rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-desktop {
+                display: none;
+            }
+            .hamburger {
+                display: flex;
+            }
+
+            .section-title {
+                font-size: 2.4rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .products-section {
+                padding: 40px 0 60px;
+            }
+
+            .product-image-wrapper {
+                min-height: 200px;
+                padding: 16px;
+            }
+
+            .product-image-wrapper img {
+                max-height: 180px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            .btn {
+                padding: 12px 28px;
+            }
+            .btn-large {
+                padding: 14px 32px;
+            }
+            .container {
+                padding: 0 16px;
+            }
+
+            .product-title {
+                font-size: 1.15rem;
+            }
+
+            .product-price {
+                font-size: 1.5rem;
+            }
+
+            .products-header {
+                margin-bottom: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    HEADER
+    ============================================================ -->
+    <header class="site-header" id="siteHeader">
+        <div class="container header-inner">
+            <!-- Logo -->
+            <a href="index.html" class="logo">
+                <span class="logo-text">CLARITY PRESS</span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="nav-desktop" aria-label="Main navigation">
+                <ul class="nav-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="product.html" class="active">Product</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#buy" class="btn btn-primary btn-small">Buy Now</a></li>
+                </ul>
+            </nav>
+
+            <!-- Mobile Hamburger -->
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+
+        <!-- Mobile Nav -->
+        <nav class="nav-mobile" id="navMobile" aria-label="Mobile navigation">
+            <ul class="nav-mobile-list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="product.html">Product</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="#buy" class="btn btn-primary btn-block">Buy Now</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- ============================================================
+        PRODUCTS SECTION
+        ============================================================ -->
+        <section class="products-section" id="products">
+            <div class="container">
+                <div class="products-header">
+                    <div class="section-label">OUR COLLECTION</div>
+                    <h2 class="section-title">Practical Guides for Real Progress</h2>
+                    <p class="section-subtitle">
+                        Five dummy products to demonstrate the layout. Replace with your actual products.
+                    </p>
+                </div>
+
+                <div class="products-grid">
+
+                    <!-- Product 1 -->
+                    <div class="product-card">
+                        <div class="product-image-wrapper">
+                            <span class="product-badge bestseller">#1 Best Seller</span>
+                            <img src="https://ebook.faizkhan765644.workers.dev/Atomic%20Habits.jpg" alt="Atomic Habits" />
+                        </div>
+                        <div class="product-content">
+                            <h3 class="product-title">Atomic Habits</h3>
+                            <p class="product-author">by <strong>James Clear</strong></p>
+                            <div class="product-rating">
+                                <span class="stars">★★★★★</span>
+                                <span>4.6 (113,009)</span>
+                            </div>
+                            <p class="product-desc">
+                                Transform your life with tiny changes in behaviour. The life-changing million-copy #1 bestseller.
+                            </p>
+                            <div class="product-price-row">
+                                <span class="product-price">$4.99</span>
+                                <span class="product-original">$8.99</span>
+                                <span class="product-discount">–44%</span>
+                            </div>
+                            <div class="product-actions">
+                                <a href="[CHECKOUT_URL]" class="btn btn-primary">Buy Now</a>
+                                <a href="#" class="btn btn-secondary">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 2 -->
+                    <div class="product-card">
+                        <div class="product-image-wrapper">
+                            <span class="product-badge new">New</span>
+                            <img src="https://ebook.faizkhan765644.workers.dev/Atomic%20Habits.jpg" alt="The Power of Habit" />
+                        </div>
+                        <div class="product-content">
+                            <h3 class="product-title">The Power of Habit</h3>
+                            <p class="product-author">by <strong>Charles Duhigg</strong></p>
+                            <div class="product-rating">
+                                <span class="stars">★★★★☆</span>
+                                <span>4.4 (45,230)</span>
+                            </div>
+                            <p class="product-desc">
+                                Why we do what we do in life and business. A deep dive into the science of habit formation.
+                            </p>
+                            <div class="product-price-row">
+                                <span class="product-price">$5.99</span>
+                                <span class="product-original">$9.99</span>
+                                <span class="product-discount">–40%</span>
+                            </div>
+                            <div class="product-actions">
+                                <a href="[CHECKOUT_URL]" class="btn btn-primary">Buy Now</a>
+                                <a href="#" class="btn btn-secondary">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 3 -->
+                    <div class="product-card">
+                        <div class="product-image-wrapper">
+                            <span class="product-badge">Popular</span>
+                            <img src="https://ebook.faizkhan765644.workers.dev/Atomic%20Habits.jpg" alt="Deep Work" />
+                        </div>
+                        <div class="product-content">
+                            <h3 class="product-title">Deep Work</h3>
+                            <p class="product-author">by <strong>Cal Newport</strong></p>
+                            <div class="product-rating">
+                                <span class="stars">★★★★★</span>
+                                <span>4.5 (32,110)</span>
+                            </div>
+                            <p class="product-desc">
+                                Rules for focused success in a distracted world. Master the ability to focus without distraction.
+                            </p>
+                            <div class="product-price-row">
+                                <span class="product-price">$6.49</span>
+                                <span class="product-original">$10.99</span>
+                                <span class="product-discount">–41%</span>
+                            </div>
+                            <div class="product-actions">
+                                <a href="[CHECKOUT_URL]" class="btn btn-primary">Buy Now</a>
+                                <a href="#" class="btn btn-secondary">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 4 -->
+                    <div class="product-card">
+                        <div class="product-image-wrapper">
+                            <img src="https://ebook.faizkhan765644.workers.dev/Atomic%20Habits.jpg" alt="Mindset" />
+                        </div>
+                        <div class="product-content">
+                            <h3 class="product-title">Mindset</h3>
+                            <p class="product-author">by <strong>Carol S. Dweck</strong></p>
+                            <div class="product-rating">
+                                <span class="stars">★★★★☆</span>
+                                <span>4.3 (28,450)</span>
+                            </div>
+                            <p class="product-desc">
+                                The new psychology of success. How we can learn to fulfill our potential and grow.
+                            </p>
+                            <div class="product-price-row">
+                                <span class="product-price">$4.49</span>
+                                <span class="product-original">$7.99</span>
+                                <span class="product-discount">–44%</span>
+                            </div>
+                            <div class="product-actions">
+                                <a href="[CHECKOUT_URL]" class="btn btn-primary">Buy Now</a>
+                                <a href="#" class="btn btn-secondary">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product 5 -->
+                    <div class="product-card">
+                        <div class="product-image-wrapper">
+                            <img src="https://ebook.faizkhan765644.workers.dev/Atomic%20Habits.jpg" alt="Thinking, Fast and Slow" />
+                        </div>
+                        <div class="product-content">
+                            <h3 class="product-title">Thinking, Fast and Slow</h3>
+                            <p class="product-author">by <strong>Daniel Kahneman</strong></p>
+                            <div class="product-rating">
+                                <span class="stars">★★★★☆</span>
+                                <span>4.4 (51,200)</span>
+                            </div>
+                            <p class="product-desc">
+                                The groundbreaking tour of the mind that explains the two systems that drive the way we think.
+                            </p>
+                            <div class="product-price-row">
+                                <span class="product-price">$7.99</span>
+                                <span class="product-original">$12.99</span>
+                                <span class="product-discount">–38%</span>
+                            </div>
+                            <div class="product-actions">
+                                <a href="[CHECKOUT_URL]" class="btn btn-primary">Buy Now</a>
+                                <a href="#" class="btn btn-secondary">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div class="footer-col">
+                <a href="index.html" class="logo"><span class="logo-text">CLARITY PRESS</span></a>
+                <p class="footer-desc">A practical guide designed to help you understand the process, take the right steps, and make real progress.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="product.html">Product</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms &amp; Conditions</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Follow</h4>
+                <ul>
+                    <li><a href="[INSTAGRAM_URL]" target="_blank" rel="noopener">Instagram</a></li>
+                    <li><a href="[YOUTUBE_URL]" target="_blank" rel="noopener">YouTube</a></li>
+                    <li><a href="#" target="_blank" rel="noopener">LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container footer-bottom-inner">
+                <p>&copy; 2026 Clarity Press. All rights reserved.</p>
+                <p class="footer-disclaimer">This is a placeholder disclaimer. Replace with actual legal text.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+    <!-- ============================================================
+    JAVASCRIPT
+    ============================================================ -->
+    <script>
+        // ============================================================
+        // HEADER SCROLL
+        // ============================================================
+        const header = document.getElementById('siteHeader');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+            if (currentScroll > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            lastScroll = currentScroll;
+        });
+
+        // ============================================================
+        // MOBILE MENU
+        // ============================================================
+        const hamburger = document.getElementById('hamburger');
+        const navMobile = document.getElementById('navMobile');
+
+        hamburger.addEventListener('click', () => {
+            const isOpen = hamburger.classList.toggle('active');
+            navMobile.classList.toggle('open');
+            hamburger.setAttribute('aria-expanded', isOpen);
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.nav-mobile-list a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMobile.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // ============================================================
+        // BACK TO TOP
+        // ============================================================
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ============================================================
+        // SMOOTH SCROLL FOR ANCHOR LINKS
+        // ============================================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const targetEl = document.querySelector(targetId);
+                if (targetEl) {
+                    e.preventDefault();
+                    targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
