@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checkout — Clarity Press</title>
+    <meta name="description" content="Secure checkout — complete your purchase of the Practical Guide." />
+    <link rel="canonical" href="https://yourdomain.com/checkout.html" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Checkout — Clarity Press" />
+    <meta property="og:description" content="Complete your purchase of the Practical Guide. Instant digital delivery." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://yourdomain.com/checkout.html" />
+    <meta property="og:image" content="https://yourdomain.com/assets/images/og-image.jpg" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <style>
+        /* ============================================================
+           CSS VARIABLES & RESET
+           ============================================================ */
+        :root {
+            --bg: #F8F6F1;
+            --text-primary: #1D1D1B;
+            --text-secondary: #6F6A62;
+            --accent: #9B6B4A;
+            --light-accent: #E8DED4;
+            --white: #FFFFFF;
+            --border: #DED8D0;
+            --success: #2E7D32;
+            --error: #c0392b;
+
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+
+            --max-width: 1200px;
+            --section-padding: 80px 0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ============================================================
+           BUTTONS
+           ============================================================ */
+        .btn {
+            display: inline-block;
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 14px 36px;
+            border-radius: 40px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--white);
+            box-shadow: 0 4px 12px rgba(155, 107, 74, 0.25);
+        }
+
+        .btn-primary:hover {
+            background-color: #7d5840;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(155, 107, 74, 0.35);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--light-accent);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .btn-small {
+            padding: 10px 24px;
+            font-size: 0.9rem;
+        }
+
+        .btn-large {
+            padding: 18px 48px;
+            font-size: 1.2rem;
+        }
+
+        .btn-block {
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* ============================================================
+           HEADER
+           ============================================================ */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(248, 246, 241, 0.92);
+            backdrop-filter: blur(6px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.04);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text {
+            display: inline-block;
+        }
+
+        .checkout-secure-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+            color: var(--success);
+            font-weight: 500;
+        }
+
+        .checkout-secure-badge svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* ============================================================
+           CHECKOUT SECTION
+           ============================================================ */
+        .checkout-section {
+            padding: 60px 0 80px;
+            background: var(--bg);
+        }
+
+        .checkout-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .checkout-header .section-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .checkout-header h1 {
+            font-family: var(--font-heading);
+            font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+
+        .checkout-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        /* Checkout layout */
+        .checkout-layout {
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: 48px;
+            align-items: start;
+        }
+
+        /* ---- Billing form ---- */
+        .checkout-form {
+            background: var(--white);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            padding: 40px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04);
+        }
+
+        .form-section-title {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+            letter-spacing: 0.3px;
+        }
+
+        .form-group label .required {
+            color: var(--error);
+            margin-left: 2px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(155, 107, 74, 0.1);
+        }
+
+        .form-group input::placeholder {
+            color: #b0a89e;
+        }
+
+        .form-group select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236F6A62' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            padding-right: 40px;
+        }
+
+        .form-group input.error,
+        .form-group select.error {
+            border-color: var(--error);
+            box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.08);
+        }
+
+        .form-group .error-message {
+            display: none;
+            font-size: 0.78rem;
+            color: var(--error);
+            margin-top: 4px;
+        }
+
+        .form-group .error-message.visible {
+            display: block;
+        }
+
+        /* Order notes */
+        .order-notes {
+            margin-top: 8px;
+        }
+
+        .order-notes textarea {
+            width: 100%;
+            padding: 12px 16px;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            resize: vertical;
+            min-height: 90px;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .order-notes textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(155, 107, 74, 0.1);
+        }
+
+        .order-notes textarea::placeholder {
+            color: #b0a89e;
+        }
+
+        /* ---- Order summary ---- */
+        .order-summary {
+            background: var(--white);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            padding: 32px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04);
+            position: sticky;
+            top: 100px;
+        }
+
+        .order-summary-title {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* Order item */
+        .order-item {
+            display: flex;
+            gap: 16px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 20px;
+        }
+
+        .order-item-image {
+            width: 80px;
+            height: 110px;
+            flex-shrink: 0;
+            background: var(--bg);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .order-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .order-item-details {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .order-item-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            line-height: 1.3;
+            margin-bottom: 4px;
+        }
+
+        .order-item-author {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+
+        .order-item-format {
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            background: var(--bg);
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-bottom: 6px;
+        }
+
+        .order-item-price {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--accent);
+        }
+
+        .order-item-qty {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* Summary rows */
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            font-size: 0.95rem;
+        }
+
+        .summary-row .label {
+            color: var(--text-secondary);
+        }
+
+        .summary-row .value {
+            font-weight: 500;
+        }
+
+        .summary-row.discount .value {
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        .summary-divider {
+            height: 1px;
+            background: var(--border);
+            margin: 12px 0;
+        }
+
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 8px 0;
+        }
+
+        .summary-total .label {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .summary-total .value {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .summary-total .currency {
+            font-size: 1.1rem;
+            font-weight: 400;
+        }
+
+        /* Coupon */
+        .coupon-row {
+            display: flex;
+            gap: 8px;
+            margin: 16px 0;
+        }
+
+        .coupon-row input {
+            flex: 1;
+            padding: 10px 14px;
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .coupon-row input:focus {
+            border-color: var(--accent);
+        }
+
+        .coupon-row button {
+            padding: 10px 18px;
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent);
+            background: transparent;
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .coupon-row button:hover {
+            background: var(--accent);
+            color: var(--white);
+        }
+
+        /* Trust badges */
+        .trust-badges {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .trust-badge svg {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+            color: var(--success);
+        }
+
+        /* Checkout CTA */
+        .checkout-cta {
+            margin-top: 24px;
+        }
+
+        .checkout-cta .btn {
+            width: 100%;
+            padding: 16px 24px;
+            font-size: 1.05rem;
+        }
+
+        .checkout-cta .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .checkout-footer-note {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-top: 12px;
+        }
+
+        .checkout-footer-note a {
+            color: var(--accent);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        .site-footer {
+            background: var(--text-primary);
+            color: #ccc;
+            padding: 60px 0 20px;
+        }
+
+        .footer-inner {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-col .logo {
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+
+        .footer-desc {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            opacity: 0.7;
+            max-width: 300px;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            font-weight: 600;
+            margin-bottom: 16px;
+            font-size: 1rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .footer-col ul li a:hover {
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            padding-top: 24px;
+        }
+
+        .footer-bottom-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+
+        /* ============================================================
+           BACK TO TOP
+           ============================================================ */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: var(--white);
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: #7d5840;
+            transform: translateY(-3px);
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 1024px) {
+            .checkout-layout {
+                grid-template-columns: 1fr 360px;
+                gap: 32px;
+            }
+            .footer-inner {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .checkout-layout {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .order-summary {
+                position: static;
+                order: -1;
+            }
+
+            .checkout-header h1 {
+                font-size: 2.2rem;
+            }
+
+            .checkout-form {
+                padding: 28px 20px;
+            }
+
+            .order-summary {
+                padding: 24px 20px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom-inner {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .checkout-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .checkout-section {
+                padding: 40px 0 60px;
+            }
+
+            .checkout-form {
+                padding: 24px 16px;
+            }
+
+            .order-summary {
+                padding: 20px 16px;
+            }
+
+            .btn {
+                padding: 12px 28px;
+            }
+
+            .btn-large {
+                padding: 14px 32px;
+            }
+
+            .container {
+                padding: 0 16px;
+            }
+
+            .order-item-image {
+                width: 64px;
+                height: 90px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    HEADER
+    ============================================================ -->
+    <header class="site-header" id="siteHeader">
+        <div class="container header-inner">
+            <!-- Logo -->
+            <a href="index.html" class="logo">
+                <span class="logo-text">CLARITY PRESS</span>
+            </a>
+
+            <!-- Secure badge -->
+            <div class="checkout-secure-badge">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                Secure Checkout
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ============================================================
+        CHECKOUT SECTION
+        ============================================================ -->
+        <section class="checkout-section">
+            <div class="container">
+                <div class="checkout-header">
+                    <span class="section-label">CHECKOUT</span>
+                    <h1>Complete Your Purchase</h1>
+                    <p>You're just a few details away from instant access.</p>
+                </div>
+
+                <div class="checkout-layout">
+
+                    <!-- ---- BILLING FORM ---- -->
+                    <div class="checkout-form">
+                        <h2 class="form-section-title">Billing Details</h2>
+
+                        <form id="checkoutForm" novalidate>
+                            <!-- Email -->
+                            <div class="form-group">
+                                <label for="email">Email Address <span class="required">*</span></label>
+                                <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" />
+                                <span class="error-message" id="emailError">Please enter a valid email address.</span>
+                            </div>
+
+                            <!-- Name row -->
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="firstName">First Name <span class="required">*</span></label>
+                                    <input type="text" id="firstName" name="firstName" placeholder="John" autocomplete="given-name" />
+                                    <span class="error-message" id="firstNameError">First name is required.</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastName">Last Name <span class="required">*</span></label>
+                                    <input type="text" id="lastName" name="lastName" placeholder="Doe" autocomplete="family-name" />
+                                    <span class="error-message" id="lastNameError">Last name is required.</span>
+                                </div>
+                            </div>
+
+                            <!-- Country -->
+                            <div class="form-group">
+                                <label for="country">Country <span class="required">*</span></label>
+                                <select id="country" name="country">
+                                    <option value="">Select your country</option>
+                                    <option value="US">United States</option>
+                                    <option value="GB">United Kingdom</option>
+                                    <option value="CA">Canada</option>
+                                    <option value="AU">Australia</option>
+                                    <option value="DE">Germany</option>
+                                    <option value="FR">France</option>
+                                    <option value="IN">India</option>
+                                    <option value="PK">Pakistan</option>
+                                    <option value="BD">Bangladesh</option>
+                                    <option value="NG">Nigeria</option>
+                                    <option value="ZA">South Africa</option>
+                                    <option value="BR">Brazil</option>
+                                    <option value="MX">Mexico</option>
+                                    <option value="JP">Japan</option>
+                                    <option value="SG">Singapore</option>
+                                    <option value="AE">United Arab Emirates</option>
+                                    <option value="SA">Saudi Arabia</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                <span class="error-message" id="countryError">Please select your country.</span>
+                            </div>
+
+                            <!-- Address -->
+                            <div class="form-group">
+                                <label for="address">Address <span class="required">*</span></label>
+                                <input type="text" id="address" name="address" placeholder="123 Main Street" autocomplete="street-address" />
+                                <span class="error-message" id="addressError">Address is required.</span>
+                            </div>
+
+                            <!-- City / State row -->
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="city">City <span class="required">*</span></label>
+                                    <input type="text" id="city" name="city" placeholder="New York" autocomplete="address-level2" />
+                                    <span class="error-message" id="cityError">City is required.</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="state">State / Province</label>
+                                    <input type="text" id="state" name="state" placeholder="NY" autocomplete="address-level1" />
+                                </div>
+                            </div>
+
+                            <!-- ZIP / Phone row -->
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="zip">ZIP / Postal Code <span class="required">*</span></label>
+                                    <input type="text" id="zip" name="zip" placeholder="10001" autocomplete="postal-code" />
+                                    <span class="error-message" id="zipError">ZIP code is required.</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone</label>
+                                    <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000" autocomplete="tel" />
+                                </div>
+                            </div>
+
+                            <!-- Order notes -->
+                            <div class="form-group order-notes">
+                                <label for="notes">Order Notes (optional)</label>
+                                <textarea id="notes" name="notes" placeholder="Any special instructions or notes for your order..."></textarea>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- ---- ORDER SUMMARY ---- -->
+                    <div class="order-summary">
+                        <h2 class="order-summary-title">Order Summary</h2>
+
+                        <!-- Order item -->
+                        <div class="order-item">
+                            <div class="order-item-image">
+                                <img src="https://ebook.faizkhan765644.workers.dev/Atomic%20Habits.jpg" alt="Atomic Habits" />
+                            </div>
+                            <div class="order-item-details">
+                                <div class="order-item-title">Atomic Habits: The life-changing million-copy #1 bestseller</div>
+                                <div class="order-item-author">by James Clear</div>
+                                <div class="order-item-format">eBook (PDF)</div>
+                                <div class="order-item-price">$4.99</div>
+                                <div class="order-item-qty">Qty: 1</div>
+                            </div>
+                        </div>
+
+                        <!-- Price breakdown -->
+                        <div class="summary-row">
+                            <span class="label">Subtotal</span>
+                            <span class="value">$8.99</span>
+                        </div>
+                        <div class="summary-row discount">
+                            <span class="label">Discount (44%)</span>
+                            <span class="value">−$4.00</span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="label">Tax</span>
+                            <span class="value">$0.00</span>
+                        </div>
+
+                        <div class="summary-divider"></div>
+
+                        <div class="summary-total">
+                            <span class="label">Total</span>
+                            <span class="value"><span class="currency">$</span>4.99</span>
+                        </div>
+
+                        <!-- Coupon -->
+                        <div class="coupon-row">
+                            <input type="text" id="couponCode" placeholder="Coupon code" />
+                            <button type="button" id="applyCoupon">Apply</button>
+                        </div>
+
+                        <!-- Trust badges -->
+                        <div class="trust-badges">
+                            <div class="trust-badge">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                </svg>
+                                <span>Secure SSL encrypted checkout</span>
+                            </div>
+                            <div class="trust-badge">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>Instant digital delivery</span>
+                            </div>
+                            <div class="trust-badge">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                </svg>
+                                <span>30-day money-back guarantee</span>
+                            </div>
+                        </div>
+
+                        <!-- CTA -->
+                        <div class="checkout-cta">
+                            <button type="submit" form="checkoutForm" class="btn btn-primary btn-large" id="placeOrderBtn">
+                                Complete Purchase — $4.99
+                            </button>
+                        </div>
+
+                        <p class="checkout-footer-note">
+                            By completing your purchase you agree to our
+                            <a href="terms.html">Terms &amp; Conditions</a> and
+                            <a href="privacy-policy.html">Privacy Policy</a>.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div class="footer-col">
+                <a href="index.html" class="logo"><span class="logo-text">CLARITY PRESS</span></a>
+                <p class="footer-desc">A practical guide designed to help you understand the process, take the right steps, and make real progress.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="product.html">Product</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms &amp; Conditions</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Follow</h4>
+                <ul>
+                    <li><a href="[INSTAGRAM_URL]" target="_blank" rel="noopener">Instagram</a></li>
+                    <li><a href="[YOUTUBE_URL]" target="_blank" rel="noopener">YouTube</a></li>
+                    <li><a href="#" target="_blank" rel="noopener">LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container footer-bottom-inner">
+                <p>&copy; 2026 Clarity Press. All rights reserved.</p>
+                <p class="footer-disclaimer">This is a placeholder disclaimer. Replace with actual legal text.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+    <!-- ============================================================
+    JAVASCRIPT
+    ============================================================ -->
+    <script>
+        // ============================================================
+        // HEADER SCROLL
+        // ============================================================
+        const header = document.getElementById('siteHeader');
+
+        window.addEventListener('scroll', () => {
+            // Header is always solid on checkout page
+        });
+
+        // ============================================================
+        // BACK TO TOP
+        // ============================================================
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ============================================================
+        // FORM VALIDATION
+        // ============================================================
+        const form = document.getElementById('checkoutForm');
+        const placeOrderBtn = document.getElementById('placeOrderBtn');
+
+        const requiredFields = [
+            { id: 'email', errorId: 'emailError', validate: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) },
+            { id: 'firstName', errorId: 'firstNameError', validate: (v) => v.trim().length > 0 },
+            { id: 'lastName', errorId: 'lastNameError', validate: (v) => v.trim().length > 0 },
+            { id: 'country', errorId: 'countryError', validate: (v) => v !== '' },
+            { id: 'address', errorId: 'addressError', validate: (v) => v.trim().length > 0 },
+            { id: 'city', errorId: 'cityError', validate: (v) => v.trim().length > 0 },
+            { id: 'zip', errorId: 'zipError', validate: (v) => v.trim().length > 0 }
+        ];
+
+        // Real-time validation on blur
+        requiredFields.forEach(field => {
+            const input = document.getElementById(field.id);
+            const errorEl = document.getElementById(field.errorId);
+
+            input.addEventListener('blur', () => {
+                validateField(input, errorEl, field.validate);
+            });
+
+            input.addEventListener('input', () => {
+                if (input.classList.contains('error')) {
+                    validateField(input, errorEl, field.validate);
+                }
+            });
+        });
+
+        function validateField(input, errorEl, validateFn) {
+            const value = input.value;
+            if (!validateFn(value)) {
+                input.classList.add('error');
+                errorEl.classList.add('visible');
+                return false;
+            } else {
+                input.classList.remove('error');
+                errorEl.classList.remove('visible');
+                return true;
+            }
+        }
+
+        // Form submit
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            let isValid = true;
+
+            requiredFields.forEach(field => {
+                const input = document.getElementById(field.id);
+                const errorEl = document.getElementById(field.errorId);
+                if (!validateField(input, errorEl, field.validate)) {
+                    isValid = false;
+                }
+            });
+
+            if (!isValid) {
+                // Scroll to first error
+                const firstError = document.querySelector('.form-group input.error, .form-group select.error');
+                if (firstError) {
+                    firstError.focus();
+                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                return;
+            }
+
+            // Simulate order processing
+            placeOrderBtn.disabled = true;
+            placeOrderBtn.textContent = 'Processing...';
+
+            setTimeout(() => {
+                // Collect form data
+                const formData = {
+                    email: document.getElementById('email').value,
+                    firstName: document.getElementById('firstName').value,
+                    lastName: document.getElementById('lastName').value,
+                    country: document.getElementById('country').value,
+                    address: document.getElementById('address').value,
+                    city: document.getElementById('city').value,
+                    state: document.getElementById('state').value,
+                    zip: document.getElementById('zip').value,
+                    phone: document.getElementById('phone').value,
+                    notes: document.getElementById('notes').value,
+                    product: {
+                        title: 'Atomic Habits: The life-changing million-copy #1 bestseller',
+                        author: 'James Clear',
+                        price: 4.99,
+                        originalPrice: 8.99,
+                        quantity: 1,
+                        format: 'eBook (PDF)'
+                    },
+                    total: 4.99
+                };
+
+                console.log('Order submitted:', formData);
+
+                // Redirect to thank you page (replace with actual URL)
+                // window.location.href = 'thank-you.html';
+
+                // For demo purposes, show success message
+                placeOrderBtn.textContent = '✓ Order Complete!';
+                placeOrderBtn.style.background = 'var(--success)';
+                placeOrderBtn.style.boxShadow = 'none';
+
+                setTimeout(() => {
+                    alert('Demo: Order would be processed here.\\n\\nProduct: ' + formData.product.title + '\\nTotal: $' + formData.total.toFixed(2) + '\\n\\nIn production, this would redirect to a thank-you page or payment gateway.');
+                }, 300);
+            }, 1500);
+        });
+
+        // ============================================================
+        // COUPON CODE
+        // ============================================================
+        const applyCouponBtn = document.getElementById('applyCoupon');
+        const couponInput = document.getElementById('couponCode');
+
+        applyCouponBtn.addEventListener('click', () => {
+            const code = couponInput.value.trim().toUpperCase();
+            if (code === '') {
+                alert('Please enter a coupon code.');
+                return;
+            }
+
+            // Demo coupon codes
+            if (code === 'SAVE10') {
+                alert('Coupon "SAVE10" applied! 10% discount (demo only).');
+                couponInput.value = '';
+            } else if (code === 'WELCOME') {
+                alert('Coupon "WELCOME" applied! Free bonus guide (demo only).');
+                couponInput.value = '';
+            } else {
+                alert('Invalid coupon code. Try "SAVE10" or "WELCOME" for demo.');
+            }
+        });
+
+        // ============================================================
+        // SMOOTH SCROLL FOR ANCHOR LINKS
+        // ============================================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const targetEl = document.querySelector(targetId);
+                if (targetEl) {
+                    e.preventDefault();
+                    targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
