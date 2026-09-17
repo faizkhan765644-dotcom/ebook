@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mindset — Practical Guide | Clarity Press</title>
+    <meta name="description" content="Mindset: The New Psychology of Success by Carol S. Dweck. Discover how a simple belief about yourself can transform your life and achievements." />
+    <link rel="canonical" href="https://yourdomain.com/.html" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Mindset — Practical Guide | Clarity Press" />
+    <meta property="og:description" content="The New Psychology of Success. One of the most influential books ever about motivation." />
+    <meta property="og:type" content="product" />
+    <meta property="og:url" content="https://yourdomain.com/.html" />
+    <meta property="og:image" content="https://ebook.faizkhan765644.workers.dev/mindset.jpg" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <style>
+        /* ============================================================
+           CSS VARIABLES & RESET
+           ============================================================ */
+        :root {
+            --bg: #F8F6F1;
+            --text-primary: #1D1D1B;
+            --text-secondary: #6F6A62;
+            --accent: #9B6B4A;
+            --light-accent: #E8DED4;
+            --white: #FFFFFF;
+            --border: #DED8D0;
+            --success: #2E7D32;
+
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+
+            --max-width: 1200px;
+            --section-padding: 80px 0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ============================================================
+           BUTTONS
+           ============================================================ */
+        .btn {
+            display: inline-block;
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 14px 36px;
+            border-radius: 40px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--white);
+            box-shadow: 0 4px 12px rgba(155, 107, 74, 0.25);
+        }
+
+        .btn-primary:hover {
+            background-color: #7d5840;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(155, 107, 74, 0.35);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--light-accent);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .btn-small {
+            padding: 10px 24px;
+            font-size: 0.9rem;
+        }
+
+        .btn-large {
+            padding: 18px 48px;
+            font-size: 1.2rem;
+        }
+
+        .btn-block {
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* ============================================================
+           HEADER
+           ============================================================ */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(248, 246, 241, 0.92);
+            backdrop-filter: blur(6px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.04);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text {
+            display: inline-block;
+        }
+
+        .nav-desktop .nav-list {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-desktop .nav-list a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: color 0.2s;
+        }
+
+        .nav-desktop .nav-list a:hover,
+        .nav-desktop .nav-list a.active {
+            color: var(--text-primary);
+        }
+
+        .nav-desktop .nav-list .btn-primary {
+            color: var(--white);
+        }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .hamburger-line {
+            width: 28px;
+            height: 2px;
+            background: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hamburger.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Mobile nav */
+        .nav-mobile {
+            display: none;
+            background: var(--bg);
+            padding: 20px 24px;
+            border-top: 1px solid var(--border);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+        }
+
+        .nav-mobile.open {
+            display: block;
+        }
+
+        .nav-mobile-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .nav-mobile-list a {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .nav-mobile-list .btn-primary {
+            margin-top: 8px;
+        }
+
+        /* ============================================================
+           SECTIONS – COMMON
+           ============================================================ */
+        section {
+            padding: var(--section-padding);
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 650px;
+            margin-bottom: 48px;
+        }
+
+        /* ============================================================
+           PRODUCT HERO
+           ============================================================ */
+        .product-hero {
+            padding: 40px 0 80px;
+            background: var(--bg);
+        }
+
+        .product-hero-inner {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 60px;
+            align-items: flex-start;
+        }
+
+        .product-image-wrapper {
+            position: relative;
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08), 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-image-wrapper img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: var(--accent);
+            color: var(--white);
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            z-index: 3;
+            text-transform: uppercase;
+        }
+
+        .product-badge.bestseller {
+            background: #B8860B;
+        }
+
+        .product-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .product-category {
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .product-title {
+            font-family: var(--font-heading);
+            font-size: 2.6rem;
+            line-height: 1.15;
+            font-weight: 700;
+        }
+
+        .product-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .product-author {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+        }
+
+        .product-author strong {
+            color: var(--text-primary);
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .stars {
+            color: #E6A817;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
+        .product-short-desc {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: 1.7;
+        }
+
+        /* Price block */
+        .price-block {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px 32px;
+            margin-top: 8px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+        }
+
+        .price-row {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .price-current {
+            font-family: var(--font-heading);
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1;
+        }
+
+        .price-original {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            text-decoration: line-through;
+        }
+
+        .price-discount {
+            background: var(--success);
+            color: var(--white);
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .price-note {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 8px;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+
+        .product-actions .btn-primary {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .product-trust {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 16px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .product-trust span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* ============================================================
+           ABOUT THE BOOK
+           ============================================================ */
+        .about-book {
+            background: var(--white);
+        }
+
+        .about-book-inner {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 60px;
+            align-items: flex-start;
+        }
+
+        .about-book-text p {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            margin-bottom: 18px;
+            line-height: 1.8;
+        }
+
+        .about-book-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .about-book-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .detail-card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .detail-card h4 {
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 14px;
+        }
+
+        .detail-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .detail-list li {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.95rem;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .detail-list li:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .detail-list li span:first-child {
+            color: var(--text-secondary);
+        }
+
+        .detail-list li span:last-child {
+            font-weight: 600;
+            color: var(--text-primary);
+            text-align: right;
+        }
+
+        /* ============================================================
+           WHAT YOU'LL LEARN
+           ============================================================ */
+        .learn {
+            background: var(--bg);
+        }
+
+        .learn-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .learn-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px 24px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .learn-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+        }
+
+        .learn-icon {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+        }
+
+        .learn-card h3 {
+            font-size: 1.15rem;
+            margin-bottom: 8px;
+        }
+
+        .learn-card p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* ============================================================
+           REVIEWS
+           ============================================================ */
+        .reviews {
+            background: var(--white);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .review-card {
+            background: var(--bg);
+            padding: 28px 24px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .review-stars {
+            color: #E6A817;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .review-card blockquote {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            font-style: italic;
+            flex: 1;
+        }
+
+        .review-source {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent);
+            letter-spacing: 0.5px;
+        }
+
+        .review-summary {
+            text-align: center;
+            padding: 32px 24px;
+            background: var(--bg);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .review-summary .big-rating {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .review-summary .stars {
+            font-size: 1.4rem;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .review-summary .review-count {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        /* ============================================================
+           AUTHOR
+           ============================================================ */
+        .author-section {
+            background: var(--bg);
+        }
+
+        .author-inner {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .author-photo {
+            background: var(--light-accent);
+            border-radius: 16px;
+            aspect-ratio: 4/5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-weight: 500;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            max-width: 320px;
+        }
+
+        .author-photo-placeholder {
+            text-align: center;
+            padding: 20px;
+            font-family: var(--font-heading);
+            font-size: 4rem;
+            color: var(--accent);
+            opacity: 0.4;
+        }
+
+        .author-content {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .author-bio {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* ============================================================
+           FINAL CTA
+           ============================================================ */
+        .final-cta {
+            background: var(--accent);
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .final-cta-title {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .final-cta-text {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 32px;
+            opacity: 0.9;
+        }
+
+        .final-cta .btn-primary {
+            background: var(--white);
+            color: var(--accent);
+            box-shadow: none;
+        }
+
+        .final-cta .btn-primary:hover {
+            background: var(--light-accent);
+            transform: translateY(-2px);
+        }
+
+        .final-cta-trust {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        .site-footer {
+            background: var(--text-primary);
+            color: #ccc;
+            padding: 60px 0 20px;
+        }
+
+        .footer-inner {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-col .logo {
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+
+        .footer-desc {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            opacity: 0.7;
+            max-width: 300px;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            font-weight: 600;
+            margin-bottom: 16px;
+            font-size: 1rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .footer-col ul li a:hover {
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            padding-top: 24px;
+        }
+
+        .footer-bottom-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+
+        /* ============================================================
+           BACK TO TOP
+           ============================================================ */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: var(--white);
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: #7d5840;
+            transform: translateY(-3px);
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 1024px) {
+            .product-hero-inner {
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+            }
+            .product-title {
+                font-size: 2.2rem;
+            }
+            .about-book-inner {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .learn-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .reviews-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .author-inner {
+                grid-template-columns: 1fr 1.2fr;
+                gap: 40px;
+            }
+            .footer-inner {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-desktop {
+                display: none;
+            }
+            .hamburger {
+                display: flex;
+            }
+
+            .product-hero-inner {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .product-title {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2.4rem;
+            }
+
+            .learn-grid {
+                grid-template-columns: 1fr;
+            }
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+            .author-inner {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            .author-photo {
+                max-width: 260px;
+                margin: 0 auto;
+            }
+            .footer-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .price-block {
+                padding: 22px 20px;
+            }
+            .price-current {
+                font-size: 2.2rem;
+            }
+
+            .final-cta-title {
+                font-size: 2.2rem;
+            }
+
+            .product-actions {
+                flex-direction: column;
+            }
+            .product-actions .btn-primary {
+                min-width: auto;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product-title {
+                font-size: 1.7rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .btn {
+                padding: 12px 28px;
+            }
+            .btn-large {
+                padding: 14px 32px;
+            }
+            .container {
+                padding: 0 16px;
+            }
+            .final-cta-title {
+                font-size: 1.8rem;
+            }
+
+            .price-current {
+                font-size: 1.9rem;
+            }
+
+            .product-trust {
+                gap: 12px;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .product-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    HEADER
+    ============================================================ -->
+    <header class="site-header" id="siteHeader">
+        <div class="container header-inner">
+            <!-- Logo -->
+            <a href="index.html" class="logo">
+                <span class="logo-text">CLARITY PRESS</span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="nav-desktop" aria-label="Main navigation">
+                <ul class="nav-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="product.html" class="active">Product</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#buy" class="btn btn-primary btn-small">Buy Now</a></li>
+                </ul>
+            </nav>
+
+            <!-- Mobile Hamburger -->
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+
+        <!-- Mobile Nav -->
+        <nav class="nav-mobile" id="navMobile" aria-label="Mobile navigation">
+            <ul class="nav-mobile-list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="product.html">Product</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="#buy" class="btn btn-primary btn-block">Buy Now</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- ============================================================
+        PRODUCT HERO
+        ============================================================ -->
+        <section class="product-hero" id="hero">
+            <div class="container product-hero-inner">
+                <!-- Product Image -->
+                <div class="product-image-wrapper">
+                    <span class="product-badge bestseller">#1 Best Seller</span>
+                    <img src="https://ebook.faizkhan765644.workers.dev/mindset.jpg" alt="Mindset: The New Psychology of Success by Carol S. Dweck" />
+                </div>
+
+                <!-- Product Info -->
+                <div class="product-info">
+                    <span class="product-category">Psychology &amp; Self-Help</span>
+                    <h1 class="product-title" id="productTitle">Mindset: The New Psychology of Success</h1>
+                    <p class="product-subtitle">"A good book is one whose advice you believe. A great book is one whose advice you follow. This is a book that can change your life."</p>
+                    <p class="product-author">by <strong id="productAuthor">Carol S. Dweck, Ph.D.</strong> &nbsp;|&nbsp; Stanford University &nbsp;|&nbsp; Format: Kindle Edition</p>
+
+                    <div class="product-rating">
+                        <span class="stars">★★★★☆</span>
+                        <span>4.5 out of 5 stars &nbsp;·&nbsp; 11,652 ratings</span>
+                    </div>
+
+                    <p class="product-short-desc">
+                        After decades of research, world-renowned Stanford University psychologist Carol S. Dweck, Ph.D., discovered a simple but groundbreaking idea: the power of mindset. In this brilliant book, she shows how success in school, work, sports, the arts, and almost every area of human endeavor can be dramatically influenced by how we think about our talents and abilities.
+                    </p>
+
+                    <!-- Price Block -->
+                    <div class="price-block">
+                        <div class="price-row">
+                            <span class="price-current" id="productPrice">$8.00</span>
+                            <span class="price-original" id="productOriginalPrice">$16.99</span>
+                            <span class="price-discount">–53%</span>
+                        </div>
+                        <p class="price-note">Digital List Price: $16.99 &nbsp;·&nbsp; One-time payment &nbsp;·&nbsp; Instant digital delivery</p>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="product-actions">
+                        <a href="#" class="btn btn-primary btn-large" id="buyNowBtn">Buy Now</a>
+                        <a href="#details" class="btn btn-secondary btn-large">See Details</a>
+                    </div>
+
+                    <div class="product-trust">
+                        <span>✓ Instant digital access</span>
+                        <span>✓ Read on any device</span>
+                        <span>✓ Secure checkout</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        ABOUT THE BOOK
+        ============================================================ -->
+        <section class="about-book" id="details">
+            <div class="container">
+                <div class="section-label">ABOUT THE BOOK</div>
+                <h2 class="section-title">The New Psychology of Success.</h2>
+
+                <div class="about-book-inner">
+                    <div class="about-book-text">
+                        <p>
+                            After decades of research, world-renowned Stanford University psychologist Carol S. Dweck, Ph.D., discovered a simple but groundbreaking idea: the power of mindset. In this brilliant book, she shows how success in school, work, sports, the arts, and almost every area of human endeavor can be dramatically influenced by how we think about our talents and abilities.
+                        </p>
+                        <p>
+                            People with a <strong>fixed mindset</strong> — those who believe that abilities are fixed — are less likely to flourish than those with a <strong>growth mindset</strong> — those who believe that abilities can be developed. Mindset reveals how great parents, teachers, managers, and athletes can put this idea to use to foster outstanding accomplishment.
+                        </p>
+                        <p>
+                            In this edition, Dweck offers new insights into her now famous and broadly embraced concept. She introduces a phenomenon she calls <strong>false growth mindset</strong> and guides people toward adopting a deeper, truer growth mindset. She also expands the mindset concept beyond the individual, applying it to the cultures of groups and organizations.
+                        </p>
+                        <p>
+                            With the right mindset, you can motivate those you lead, teach, and love — to transform their lives and your own.
+                        </p>
+                    </div>
+
+                    <div class="about-book-sidebar">
+                        <div class="detail-card">
+                            <h4>Product Details</h4>
+                            <ul class="detail-list">
+                                <li><span>Publisher</span><span>Random House</span></li>
+                                <li><span>Publication date</span><span>28 February 2006</span></li>
+                                <li><span>Edition</span><span>Illustrated</span></li>
+                                <li><span>Language</span><span>English</span></li>
+                                <li><span>Print length</span><span>320 pages</span></li>
+                                <li><span>ISBN-10</span><span>1400062756</span></li>
+                                <li><span>ISBN-13</span><span>978-1400062751</span></li>
+                                <li><span>Item Weight</span><span>1 kg 50 g</span></li>
+                                <li><span>Dimensions</span><span>16 x 2.9 x 24.13 cm</span></li>
+                            </ul>
+                        </div>
+
+                        <div class="detail-card">
+                            <h4>Praise For This Book</h4>
+                            <ul class="detail-list">
+                                <li><span>Robert J. Sternberg</span><span>"A book that can change your life"</span></li>
+                                <li><span>Library Journal</span><span>"An essential read"</span></li>
+                                <li><span>Chip &amp; Dan Heath</span><span>"Everyone should read this book"</span></li>
+                                <li><span>Po Bronson</span><span>"One of the most influential books ever about motivation"</span></li>
+                                <li><span>Guy Kawasaki</span><span>"Drop everything and read Mindset"</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        WHAT YOU'LL LEARN
+        ============================================================ -->
+        <section class="learn" id="learn">
+            <div class="container">
+                <div class="section-label">WHAT YOU'LL LEARN</div>
+                <h2 class="section-title">Key Ideas Inside the Book</h2>
+                <p class="section-subtitle">
+                    A powerful framework for understanding how your beliefs shape your success and fulfillment.
+                </p>
+
+                <div class="learn-grid">
+                    <div class="learn-card">
+                        <div class="learn-icon">🧠</div>
+                        <h3>The Two Mindsets</h3>
+                        <p>Discover the difference between a fixed mindset and a growth mindset, and how they shape your life.</p>
+                    </div>
+                    <div class="learn-card">
+                        <div class="learn-icon">🌱</div>
+                        <h3>The Power of Yet</h3>
+                        <p>How adding the word "yet" to your vocabulary can transform your approach to challenges and learning.</p>
+                    </div>
+                    <div class="learn-card">
+                        <div class="learn-icon">🏆</div>
+                        <h3>Success in Sports</h3>
+                        <p>How growth mindset drives champions in sports, from Michael Jordan to Olympic athletes.</p>
+                    </div>
+                    <div class="learn-card">
+                        <div class="learn-icon">🏢</div>
+                        <h3>Mindset in Business</h3>
+                        <p>Why companies with growth mindset cultures outperform those with fixed mindset cultures.</p>
+                    </div>
+                    <div class="learn-card">
+                        <div class="learn-icon">👨‍👩‍👧</div>
+                        <h3>Parenting &amp; Teaching</h3>
+                        <p>How to foster a growth mindset in children and students to help them reach their potential.</p>
+                    </div>
+                    <div class="learn-card">
+                        <div class="learn-icon">❤️</div>
+                        <h3>Relationships &amp; Growth</h3>
+                        <p>How mindset affects your relationships and your capacity for personal transformation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        REVIEWS
+        ============================================================ -->
+        <section class="reviews" id="reviews">
+            <div class="container">
+                <div class="section-label">REVIEWS</div>
+                <h2 class="section-title">What the Critics Are Saying</h2>
+
+                <div class="reviews-grid">
+                    <div class="review-card">
+                        <div class="review-stars">★★★★★</div>
+                        <blockquote>
+                            "A good book is one whose advice you believe. A great book is one whose advice you follow. This is a book that can change your life, as its ideas have changed mine."
+                        </blockquote>
+                        <span class="review-source">— Robert J. Sternberg, co-author of Teaching for Wisdom, Intelligence, Creativity, and Success</span>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-stars">★★★★★</div>
+                        <blockquote>
+                            "An essential read for parents, teachers [and] coaches . . . as well as for those who would like to increase their own feelings of success and fulfillment."
+                        </blockquote>
+                        <span class="review-source">— Library Journal (starred review)</span>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-stars">★★★★★</div>
+                        <blockquote>
+                            "Everyone should read this book."
+                        </blockquote>
+                        <span class="review-source">— Chip Heath and Dan Heath, authors of Made to Stick</span>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-stars">★★★★★</div>
+                        <blockquote>
+                            "One of the most influential books ever about motivation."
+                        </blockquote>
+                        <span class="review-source">— Po Bronson, author of NurtureShock</span>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-stars">★★★★★</div>
+                        <blockquote>
+                            "If you manage people or are a parent (which is a form of managing people), drop everything and read Mindset."
+                        </blockquote>
+                        <span class="review-source">— Guy Kawasaki, author of The Art of the Start 2.0</span>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-stars">★★★★★</div>
+                        <blockquote>
+                            "Dweck's research has transformed how we understand learning, motivation, and success."
+                        </blockquote>
+                        <span class="review-source">— Harvard Business Review</span>
+                    </div>
+                </div>
+
+                <div class="review-summary">
+                    <div class="big-rating">4.5</div>
+                    <span class="stars">★★★★☆</span>
+                    <span class="review-count">Based on 11,652 customer ratings</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        AUTHOR
+        ============================================================ -->
+        <section class="author-section" id="author">
+            <div class="container">
+                <div class="section-label">ABOUT THE AUTHOR</div>
+                <h2 class="section-title">Meet Carol S. Dweck, Ph.D.</h2>
+
+                <div class="author-inner">
+                    <div class="author-photo">
+                        <div class="author-photo-placeholder">CD</div>
+                    </div>
+                    <div class="author-content">
+                        <p class="author-bio">
+                            Carol S. Dweck, Ph.D., is widely regarded as one of the world's leading researchers in the fields of personality, social psychology, and developmental psychology. She is the Lewis and Virginia Eaton Professor of Psychology at Stanford University.
+                        </p>
+                        <p class="author-bio">
+                            She has been elected to the American Academy of Arts and Sciences and the National Academy of Sciences, and has won nine lifetime achievement awards for her research. She addressed the United Nations on the eve of their new global development plan and has advised governments on educational and economic policies. Her work has been featured in almost every major national publication.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        FINAL CTA
+        ============================================================ -->
+        <section class="final-cta" id="buy">
+            <div class="container final-cta-inner">
+                <h2 class="final-cta-title">Ready to Transform Your Mindset?</h2>
+                <p class="final-cta-text">
+                    Get your copy of Mindset today and discover how a simple belief about yourself can transform your life and achievements.
+                </p>
+                <a href="#" class="btn btn-primary btn-large" id="finalBuyBtn">Buy Now — $8.00</a>
+                <p class="final-cta-trust">Instant access &bull; One-time payment &bull; Read anywhere</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div class="footer-col">
+                <a href="index.html" class="logo"><span class="logo-text">CLARITY PRESS</span></a>
+                <p class="footer-desc">Practical guides designed to help you understand the process, take the right steps, and make real progress.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="product.html">Product</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms &amp; Conditions</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Follow</h4>
+                <ul>
+                    <li><a href="[INSTAGRAM_URL]" target="_blank" rel="noopener">Instagram</a></li>
+                    <li><a href="[YOUTUBE_URL]" target="_blank" rel="noopener">YouTube</a></li>
+                    <li><a href="#" target="_blank" rel="noopener">LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container footer-bottom-inner">
+                <p>&copy; 2026 Clarity Press. All rights reserved.</p>
+                <p class="footer-disclaimer">This is a placeholder disclaimer. Replace with actual legal text.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+    <!-- ============================================================
+    JAVASCRIPT
+    ============================================================ -->
+    <script>
+        // ============================================================
+        // PRODUCT DATA — PASS TO CHECKOUT
+        // ============================================================
+        const PRODUCT = {
+            title: 'Mindset: The New Psychology of Success',
+            author: 'Carol S. Dweck, Ph.D.',
+            price: 8.00,
+            originalPrice: 16.99,
+            quantity: 1,
+            format: 'eBook (PDF)',
+            image: 'https://ebook.faizkhan765644.workers.dev/mindset.jpg'
+        };
+
+        function goToCheckout() {
+            // Save product to localStorage for checkout page
+            try {
+                localStorage.setItem('checkoutProduct', JSON.stringify(PRODUCT));
+            } catch (e) { /* ignore */ }
+
+            // Build URL with query params as backup
+            const params = new URLSearchParams({
+                title: PRODUCT.title,
+                author: PRODUCT.author,
+                price: PRODUCT.price,
+                originalPrice: PRODUCT.originalPrice,
+                qty: PRODUCT.quantity,
+                format: PRODUCT.format,
+                image: PRODUCT.image
+            });
+
+            window.location.href = 'checkout.html?' + params.toString();
+        }
+
+        // Attach to all Buy Now buttons
+        document.getElementById('buyNowBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            goToCheckout();
+        });
+        document.getElementById('finalBuyBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            goToCheckout();
+        });
+
+        // ============================================================
+        // MOBILE MENU
+        // ============================================================
+        const hamburger = document.getElementById('hamburger');
+        const navMobile = document.getElementById('navMobile');
+
+        hamburger.addEventListener('click', () => {
+            const isOpen = hamburger.classList.toggle('active');
+            navMobile.classList.toggle('open');
+            hamburger.setAttribute('aria-expanded', isOpen);
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.nav-mobile-list a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMobile.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // ============================================================
+        // BACK TO TOP
+        // ============================================================
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ============================================================
+        // SMOOTH SCROLL FOR ANCHOR LINKS
+        // ============================================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const targetEl = document.querySelector(targetId);
+                if (targetEl) {
+                    e.preventDefault();
+                    targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
