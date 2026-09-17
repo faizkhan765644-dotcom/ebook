@@ -901,8 +901,9 @@
                     <div class="order-summary">
                         <h2 class="order-summary-title">Order Summary</h2>
 
-                        <!-- Order item -->
-                        <div class="order-item">
+                        <!-- Order item (dynamically filled via JS) -->
+                        <div class="order-item" id="orderItemContainer">
+                            <!-- Default fallback (will be replaced by JS if product data exists) -->
                             <div class="order-item-image">
                                 <img src="https://ebook.faizkhan765644.workers.dev/Atomic%20Habits.jpg" alt="Atomic Habits" />
                             </div>
@@ -915,14 +916,14 @@
                             </div>
                         </div>
 
-                        <!-- Price breakdown -->
+                        <!-- Price breakdown (dynamically updated) -->
                         <div class="summary-row">
                             <span class="label">Subtotal</span>
-                            <span class="value">$8.99</span>
+                            <span class="value" id="subtotalValue">$8.99</span>
                         </div>
-                        <div class="summary-row discount">
-                            <span class="label">Discount (44%)</span>
-                            <span class="value">−$4.00</span>
+                        <div class="summary-row discount" id="discountRow">
+                            <span class="label" id="discountLabel">Discount (44%)</span>
+                            <span class="value" id="discountValue">−$4.00</span>
                         </div>
                         <div class="summary-row">
                             <span class="label">Tax</span>
@@ -933,7 +934,7 @@
 
                         <div class="summary-total">
                             <span class="label">Total</span>
-                            <span class="value"><span class="currency">$</span>4.99</span>
+                            <span class="value"><span class="currency">$</span><span id="totalValue">4.99</span></span>
                         </div>
 
                         <!-- Coupon -->
@@ -1037,6 +1038,106 @@
     ============================================================ -->
     <script>
         // ============================================================
+        // PRODUCT DATA HANDLING (from URL / localStorage)
+        // ============================================================
+        (function loadProductData() {
+            // 1. Try to get product from URL query parameters (e.g., ?title=...&price=...)
+            const urlParams = new URLSearchParams(window.location.search);
+            const hasUrlProduct = urlParams.has('title') && urlParams.has('price');
+
+            // 2. Try to get product from localStorage (set by "Buy Now" button on product page)
+            let storedProduct = null;
+            try {
+                const raw = localStorage.getItem('checkoutProduct');
+                if (raw) storedProduct = JSON.parse(raw);
+            } catch (e) { /* ignore */ }
+
+            let product = null;
+
+            if (hasUrlProduct) {
+                // Build product from URL params
+                product = {
+                    title: urlParams.get('title') || 'Atomic Habits: The life-changing million-copy #1 bestseller',
+                    author: urlParams.get('author') || 'James Clear',
+                    price: parseFloat(urlParams.get('price')) || 4.99,
+                    originalPrice: parseFloat(urlParams.get('originalPrice')) || 8.99,
+                    quantity: parseInt(urlParams.get('qty')) || 1,
+                    format: urlParams.get('format') || 'eBook (PDF)',
+                    image: urlParams.get('image') || 'https://ebook.faizkhan765644.workers.dev/Atomic%20Habits.jpg'
+                };
+            } else if (storedProduct && storedProduct.title) {
+                product = storedProduct;
+            } else {
+                // Fallback: use the default product (Atomic Habits)
+                product = {
+                    title: 'Atomic Habits: The life-changing million-copy #1 bestseller',
+                    author: 'James Clear',
+                    price: 4.99,
+                    originalPrice: 8.99,
+                    quantity: 1,
+                    format: 'eBook (PDF)',
+                    image: 'https://ebook.faizkhan765644.workers.dev/Atomic%20Habits.jpg'
+                };
+            }
+
+            // Ensure numeric values
+            product.price = parseFloat(product.price) || 4.99;
+            product.originalPrice = parseFloat(product.originalPrice) || 8.99;
+            product.quantity = parseInt(product.quantity) || 1;
+
+            // ---- Update the DOM with product data ----
+            const orderItemContainer = document.getElementById('orderItemContainer');
+            const subtotalValue = document.getElementById('subtotalValue');
+            const discountLabel = document.getElementById('discountLabel');
+            const discountValue = document.getElementById('discountValue');
+            const discountRow = document.getElementById('discountRow');
+            const totalValue = document.getElementById('totalValue');
+            const placeOrderBtn = document.getElementById('placeOrderBtn');
+
+            // Build order item HTML
+            orderItemContainer.innerHTML = `
+                <div class="order-item-image">
+                    <img src="${product.image}" alt="${product.title}" onerror="this.src='https://ebook.faizkhan765644.workers.dev/Atomic%20Habits.jpg'" />
+                </div>
+                <div class="order-item-details">
+                    <div class="order-item-title">${product.title}</div>
+                    <div class="order-item-author">by ${product.author}</div>
+                    <div class="order-item-format">${product.format}</div>
+                    <div class="order-item-price">$${product.price.toFixed(2)}</div>
+                    <div class="order-item-qty">Qty: ${product.quantity}</div>
+                </div>
+            `;
+
+            // Calculate totals
+            const subtotal = product.originalPrice * product.quantity;
+            const total = product.price * product.quantity;
+            const discountAmount = subtotal - total;
+            const discountPercent = Math.round((discountAmount / subtotal) * 100);
+
+            // Update subtotal
+            subtotalValue.textContent = `$${subtotal.toFixed(2)}`;
+
+            // Update discount row (hide if no discount)
+            if (discountAmount > 0.01) {
+                discountRow.style.display = 'flex';
+                discountLabel.textContent = `Discount (${discountPercent}%)`;
+                discountValue.textContent = `−$${discountAmount.toFixed(2)}`;
+            } else {
+                discountRow.style.display = 'none';
+            }
+
+            // Update total
+            totalValue.textContent = total.toFixed(2);
+
+            // Update CTA button text
+            placeOrderBtn.textContent = `Complete Purchase — $${total.toFixed(2)}`;
+
+            // Store for later use
+            window.__checkoutProduct = product;
+            window.__checkoutTotal = total;
+        })();
+
+        // ============================================================
         // HEADER SCROLL
         // ============================================================
         const header = document.getElementById('siteHeader');
@@ -1136,7 +1237,17 @@
             placeOrderBtn.textContent = 'Processing...';
 
             setTimeout(() => {
-                // Collect form data
+                // Collect form data using the actual product info
+                const product = window.__checkoutProduct || {
+                    title: 'Atomic Habits: The life-changing million-copy #1 bestseller',
+                    author: 'James Clear',
+                    price: 4.99,
+                    originalPrice: 8.99,
+                    quantity: 1,
+                    format: 'eBook (PDF)'
+                };
+                const total = window.__checkoutTotal || product.price;
+
                 const formData = {
                     email: document.getElementById('email').value,
                     firstName: document.getElementById('firstName').value,
@@ -1149,14 +1260,14 @@
                     phone: document.getElementById('phone').value,
                     notes: document.getElementById('notes').value,
                     product: {
-                        title: 'Atomic Habits: The life-changing million-copy #1 bestseller',
-                        author: 'James Clear',
-                        price: 4.99,
-                        originalPrice: 8.99,
-                        quantity: 1,
-                        format: 'eBook (PDF)'
+                        title: product.title,
+                        author: product.author,
+                        price: product.price,
+                        originalPrice: product.originalPrice,
+                        quantity: product.quantity,
+                        format: product.format
                     },
-                    total: 4.99
+                    total: total
                 };
 
                 console.log('Order submitted:', formData);
@@ -1170,7 +1281,7 @@
                 placeOrderBtn.style.boxShadow = 'none';
 
                 setTimeout(() => {
-                    alert('Demo: Order would be processed here.\\n\\nProduct: ' + formData.product.title + '\\nTotal: $' + formData.total.toFixed(2) + '\\n\\nIn production, this would redirect to a thank-you page or payment gateway.');
+                    alert('Demo: Order would be processed here.\n\nProduct: ' + formData.product.title + '\nTotal: $' + formData.total.toFixed(2) + '\n\nIn production, this would redirect to a thank-you page or payment gateway.');
                 }, 300);
             }, 1500);
         });
