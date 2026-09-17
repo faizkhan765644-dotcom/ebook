@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us — Clarity Press</title>
+    <meta name="description" content="Get in touch with Clarity Press. We're here to help with any questions about our practical guides." />
+    <link rel="canonical" href="https://yourdomain.com/contact.html" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Contact Us — Clarity Press" />
+    <meta property="og:description" content="Get in touch with Clarity Press. We're here to help with any questions." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://yourdomain.com/contact.html" />
+    <meta property="og:image" content="https://yourdomain.com/assets/images/og-image.jpg" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <style>
+        /* ============================================================
+           CSS VARIABLES & RESET
+           ============================================================ */
+        :root {
+            --bg: #F8F6F1;
+            --text-primary: #1D1D1B;
+            --text-secondary: #6F6A62;
+            --accent: #9B6B4A;
+            --light-accent: #E8DED4;
+            --white: #FFFFFF;
+            --border: #DED8D0;
+            --success: #2E7D32;
+            --error: #c0392b;
+
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+
+            --max-width: 1200px;
+            --section-padding: 80px 0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ============================================================
+           BUTTONS
+           ============================================================ */
+        .btn {
+            display: inline-block;
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 14px 36px;
+            border-radius: 40px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--white);
+            box-shadow: 0 4px 12px rgba(155, 107, 74, 0.25);
+        }
+
+        .btn-primary:hover {
+            background-color: #7d5840;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(155, 107, 74, 0.35);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--light-accent);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .btn-small {
+            padding: 10px 24px;
+            font-size: 0.9rem;
+        }
+
+        .btn-large {
+            padding: 18px 48px;
+            font-size: 1.2rem;
+        }
+
+        .btn-block {
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* ============================================================
+           HEADER
+           ============================================================ */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(248, 246, 241, 0.92);
+            backdrop-filter: blur(6px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.04);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text {
+            display: inline-block;
+        }
+
+        .nav-desktop .nav-list {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-desktop .nav-list a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: color 0.2s;
+        }
+
+        .nav-desktop .nav-list a:hover,
+        .nav-desktop .nav-list a.active {
+            color: var(--text-primary);
+        }
+
+        .nav-desktop .nav-list .btn-primary {
+            color: var(--white);
+        }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .hamburger-line {
+            width: 28px;
+            height: 2px;
+            background: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hamburger.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Mobile nav */
+        .nav-mobile {
+            display: none;
+            background: var(--bg);
+            padding: 20px 24px;
+            border-top: 1px solid var(--border);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+        }
+
+        .nav-mobile.open {
+            display: block;
+        }
+
+        .nav-mobile-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .nav-mobile-list a {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .nav-mobile-list .btn-primary {
+            margin-top: 8px;
+        }
+
+        /* ============================================================
+           SECTIONS – COMMON
+           ============================================================ */
+        section {
+            padding: var(--section-padding);
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 650px;
+            margin-bottom: 48px;
+        }
+
+        /* ============================================================
+           PAGE HERO
+           ============================================================ */
+        .page-hero {
+            padding: 60px 0 40px;
+            text-align: center;
+            background: var(--white);
+        }
+
+        .page-hero .section-title {
+            font-size: 3.5rem;
+            margin-bottom: 16px;
+        }
+
+        .page-hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ============================================================
+           CONTACT SECTION
+           ============================================================ */
+        .contact-section {
+            background: var(--white);
+            padding: 60px 0 80px;
+        }
+
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 48px;
+            align-items: start;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: var(--bg);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            padding: 40px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04);
+        }
+
+        .form-section-title {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+            letter-spacing: 0.3px;
+        }
+
+        .form-group label .required {
+            color: var(--error);
+            margin-left: 2px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(155, 107, 74, 0.1);
+        }
+
+        .form-group input::placeholder {
+            color: #b0a89e;
+        }
+
+        .form-group input.error,
+        .form-group select.error {
+            border-color: var(--error);
+            box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.08);
+        }
+
+        .form-group .error-message {
+            display: none;
+            font-size: 0.78rem;
+            color: var(--error);
+            margin-top: 4px;
+        }
+
+        .form-group .error-message.visible {
+            display: block;
+        }
+
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            resize: vertical;
+            min-height: 140px;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-group textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(155, 107, 74, 0.1);
+        }
+
+        .form-group textarea::placeholder {
+            color: #b0a89e;
+        }
+
+        .form-actions {
+            margin-top: 24px;
+        }
+
+        .form-actions .btn {
+            width: 100%;
+            padding: 16px 24px;
+            font-size: 1.05rem;
+        }
+
+        /* Contact Info Sidebar */
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .info-card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px 24px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        .info-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .info-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--light-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .info-text {
+            flex: 1;
+        }
+
+        .info-text strong {
+            display: block;
+            font-size: 0.95rem;
+            margin-bottom: 2px;
+        }
+
+        .info-text span {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .info-text a {
+            color: var(--accent);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        /* Social Links */
+        .social-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .social-link {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--white);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: all 0.2s ease;
+        }
+
+        .social-link:hover {
+            background: var(--accent);
+            color: var(--white);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* FAQ Mini */
+        .faq-mini {
+            margin-top: 8px;
+        }
+
+        .faq-mini-item {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .faq-mini-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-mini-item h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .faq-mini-item p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* ============================================================
+           MAP SECTION (Optional)
+           ============================================================ */
+        .map-section {
+            background: var(--bg);
+            padding: 0;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 300px;
+            background: var(--light-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* ============================================================
+           CTA SECTION
+           ============================================================ */
+        .contact-cta {
+            background: var(--accent);
+            color: var(--white);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .contact-cta h2 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+
+        .contact-cta p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 32px;
+            opacity: 0.9;
+        }
+
+        .contact-cta .btn-primary {
+            background: var(--white);
+            color: var(--accent);
+            box-shadow: none;
+        }
+
+        .contact-cta .btn-primary:hover {
+            background: var(--light-accent);
+        }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        .site-footer {
+            background: var(--text-primary);
+            color: #ccc;
+            padding: 60px 0 20px;
+        }
+
+        .footer-inner {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-col .logo {
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+
+        .footer-desc {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            opacity: 0.7;
+            max-width: 300px;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            font-weight: 600;
+            margin-bottom: 16px;
+            font-size: 1rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .footer-col ul li a:hover {
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            padding-top: 24px;
+        }
+
+        .footer-bottom-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+
+        /* ============================================================
+           BACK TO TOP
+           ============================================================ */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: var(--white);
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: #7d5840;
+            transform: translateY(-3px);
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 1024px) {
+            .contact-layout {
+                grid-template-columns: 1fr 340px;
+                gap: 32px;
+            }
+            .footer-inner {
+                grid-template-columns: 1fr 1fr;
+            }
+            .page-hero .section-title {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-desktop {
+                display: none;
+            }
+            .hamburger {
+                display: flex;
+            }
+
+            .page-hero .section-title {
+                font-size: 2.4rem;
+            }
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .contact-layout {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .contact-form {
+                padding: 28px 20px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .footer-inner {
+                grid-template-columns: 1fr;
+            }
+            .footer-bottom-inner {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-hero .section-title {
+                font-size: 2rem;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+            .btn {
+                padding: 12px 28px;
+            }
+            .btn-large {
+                padding: 14px 32px;
+            }
+            .container {
+                padding: 0 16px;
+            }
+            .contact-form {
+                padding: 24px 16px;
+            }
+            .info-card {
+                padding: 20px 16px;
+            }
+            .contact-cta h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    HEADER
+    ============================================================ -->
+    <header class="site-header" id="siteHeader">
+        <div class="container header-inner">
+            <!-- Logo -->
+            <a href="index.html" class="logo">
+                <span class="logo-text">CLARITY PRESS</span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="nav-desktop" aria-label="Main navigation">
+                <ul class="nav-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="product.html">Product</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                    <li><a href="index.html#buy" class="btn btn-primary btn-small">Buy Now</a></li>
+                </ul>
+            </nav>
+
+            <!-- Mobile Hamburger -->
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+
+        <!-- Mobile Nav -->
+        <nav class="nav-mobile" id="navMobile" aria-label="Mobile navigation">
+            <ul class="nav-mobile-list">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="product.html">Product</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="index.html#buy" class="btn btn-primary btn-block">Buy Now</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- ============================================================
+        PAGE HERO
+        ============================================================ -->
+        <section class="page-hero">
+            <div class="container">
+                <span class="section-label">CONTACT US</span>
+                <h1 class="section-title">We'd Love to Hear From You.</h1>
+                <p>
+                    Have a question about our guides? Need help with your purchase? Want to share feedback? Send us a message and we'll get back to you as soon as possible.
+                </p>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        CONTACT SECTION
+        ============================================================ -->
+        <section class="contact-section">
+            <div class="container contact-layout">
+
+                <!-- ---- CONTACT FORM ---- -->
+                <div class="contact-form">
+                    <h2 class="form-section-title">Send Us a Message</h2>
+
+                    <form id="contactForm" novalidate>
+                        <!-- Name row -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name <span class="required">*</span></label>
+                                <input type="text" id="firstName" name="firstName" placeholder="John" autocomplete="given-name" />
+                                <span class="error-message" id="firstNameError">First name is required.</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name <span class="required">*</span></label>
+                                <input type="text" id="lastName" name="lastName" placeholder="Doe" autocomplete="family-name" />
+                                <span class="error-message" id="lastNameError">Last name is required.</span>
+                            </div>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="form-group">
+                            <label for="email">Email Address <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" />
+                            <span class="error-message" id="emailError">Please enter a valid email address.</span>
+                        </div>
+
+                        <!-- Subject -->
+                        <div class="form-group">
+                            <label for="subject">Subject <span class="required">*</span></label>
+                            <select id="subject" name="subject">
+                                <option value="">Select a subject</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="support">Product Support</option>
+                                <option value="billing">Billing Question</option>
+                                <option value="feedback">Feedback</option>
+                                <option value="partnership">Partnership Opportunity</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <span class="error-message" id="subjectError">Please select a subject.</span>
+                        </div>
+
+                        <!-- Message -->
+                        <div class="form-group">
+                            <label for="message">Your Message <span class="required">*</span></label>
+                            <textarea id="message" name="message" placeholder="Tell us how we can help..."></textarea>
+                            <span class="error-message" id="messageError">Please enter your message.</span>
+                        </div>
+
+                        <!-- Submit -->
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary btn-large" id="sendMessageBtn">
+                                Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- ---- CONTACT INFO SIDEBAR ---- -->
+                <div class="contact-info">
+
+                    <!-- Contact Details -->
+                    <div class="info-card">
+                        <h3>Contact Information</h3>
+
+                        <div class="info-item">
+                            <div class="info-icon">✉️</div>
+                            <div class="info-text">
+                                <strong>Email</strong>
+                                <span><a href="mailto:support@claritypress.com">support@claritypress.com</a></span>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">💬</div>
+                            <div class="info-text">
+                                <strong>Support Hours</strong>
+                                <span>Monday – Friday, 9am – 6pm (EST)</span>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">⏱️</div>
+                            <div class="info-text">
+                                <strong>Response Time</strong>
+                                <span>We typically respond within 24–48 hours.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social Links -->
+                    <div class="info-card">
+                        <h3>Follow Us</h3>
+                        <div class="social-links">
+                            <a href="[INSTAGRAM_URL]" class="social-link" target="_blank" rel="noopener" aria-label="Instagram">📷</a>
+                            <a href="[YOUTUBE_URL]" class="social-link" target="_blank" rel="noopener" aria-label="YouTube">▶️</a>
+                            <a href="#" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn">💼</a>
+                        </div>
+                    </div>
+
+                    <!-- Quick FAQ -->
+                    <div class="info-card">
+                        <h3>Quick Answers</h3>
+                        <div class="faq-mini">
+                            <div class="faq-mini-item">
+                                <h4>How do I access my ebook?</h4>
+                                <p>You'll receive a download link via email immediately after purchase.</p>
+                            </div>
+                            <div class="faq-mini-item">
+                                <h4>Can I get a refund?</h4>
+                                <p>Yes — we offer a 30-day money-back guarantee. Contact us for details.</p>
+                            </div>
+                            <div class="faq-mini-item">
+                                <h4>Do you offer support?</h4>
+                                <p>Absolutely. Email us anytime and we'll help you out.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ============================================================
+        CTA SECTION
+        ============================================================ -->
+        <section class="contact-cta">
+            <div class="container">
+                <h2>Still Have Questions?</h2>
+                <p>
+                    Check out our FAQ page for quick answers, or browse our guides to find the right one for you.
+                </p>
+                <a href="faq.html" class="btn btn-primary btn-large">View FAQs</a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div class="footer-col">
+                <a href="index.html" class="logo"><span class="logo-text">CLARITY PRESS</span></a>
+                <p class="footer-desc">Practical guides designed to help you understand the process, take the right steps, and make real progress.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="product.html">Product</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms &amp; Conditions</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Follow</h4>
+                <ul>
+                    <li><a href="[INSTAGRAM_URL]" target="_blank" rel="noopener">Instagram</a></li>
+                    <li><a href="[YOUTUBE_URL]" target="_blank" rel="noopener">YouTube</a></li>
+                    <li><a href="#" target="_blank" rel="noopener">LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container footer-bottom-inner">
+                <p>&copy; 2026 Clarity Press. All rights reserved.</p>
+                <p class="footer-disclaimer">This is a placeholder disclaimer. Replace with actual legal text.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+    <!-- ============================================================
+    JAVASCRIPT
+    ============================================================ -->
+    <script>
+        // ============================================================
+        // MOBILE MENU
+        // ============================================================
+        const hamburger = document.getElementById('hamburger');
+        const navMobile = document.getElementById('navMobile');
+
+        hamburger.addEventListener('click', () => {
+            const isOpen = hamburger.classList.toggle('active');
+            navMobile.classList.toggle('open');
+            hamburger.setAttribute('aria-expanded', isOpen);
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.nav-mobile-list a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMobile.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // ============================================================
+        // BACK TO TOP
+        // ============================================================
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ============================================================
+        // SMOOTH SCROLL FOR ANCHOR LINKS
+        // ============================================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const targetEl = document.querySelector(targetId);
+                if (targetEl) {
+                    e.preventDefault();
+                    targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // ============================================================
+        // CONTACT FORM VALIDATION
+        // ============================================================
+        const contactForm = document.getElementById('contactForm');
+        const sendMessageBtn = document.getElementById('sendMessageBtn');
+
+        const requiredFields = [
+            { id: 'firstName', errorId: 'firstNameError', validate: (v) => v.trim().length > 0 },
+            { id: 'lastName', errorId: 'lastNameError', validate: (v) => v.trim().length > 0 },
+            { id: 'email', errorId: 'emailError', validate: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) },
+            { id: 'subject', errorId: 'subjectError', validate: (v) => v !== '' },
+            { id: 'message', errorId: 'messageError', validate: (v) => v.trim().length > 0 }
+        ];
+
+        // Real-time validation on blur
+        requiredFields.forEach(field => {
+            const input = document.getElementById(field.id);
+            const errorEl = document.getElementById(field.errorId);
+
+            input.addEventListener('blur', () => {
+                validateField(input, errorEl, field.validate);
+            });
+
+            input.addEventListener('input', () => {
+                if (input.classList.contains('error')) {
+                    validateField(input, errorEl, field.validate);
+                }
+            });
+        });
+
+        function validateField(input, errorEl, validateFn) {
+            const value = input.value;
+            if (!validateFn(value)) {
+                input.classList.add('error');
+                errorEl.classList.add('visible');
+                return false;
+            } else {
+                input.classList.remove('error');
+                errorEl.classList.remove('visible');
+                return true;
+            }
+        }
+
+        // Form submit
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            let isValid = true;
+
+            requiredFields.forEach(field => {
+                const input = document.getElementById(field.id);
+                const errorEl = document.getElementById(field.errorId);
+                if (!validateField(input, errorEl, field.validate)) {
+                    isValid = false;
+                }
+            });
+
+            if (!isValid) {
+                const firstError = document.querySelector('.form-group input.error, .form-group select.error, .form-group textarea.error');
+                if (firstError) {
+                    firstError.focus();
+                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                return;
+            }
+
+            // Simulate sending message
+            sendMessageBtn.disabled = true;
+            sendMessageBtn.textContent = 'Sending...';
+
+            setTimeout(() => {
+                const formData = {
+                    firstName: document.getElementById('firstName').value,
+                    lastName: document.getElementById('lastName').value,
+                    email: document.getElementById('email').value,
+                    subject: document.getElementById('subject').value,
+                    message: document.getElementById('message').value
+                };
+
+                console.log('Contact form submitted:', formData);
+
+                // Success message
+                sendMessageBtn.textContent = '✓ Message Sent!';
+                sendMessageBtn.style.background = 'var(--success)';
+                sendMessageBtn.style.boxShadow = 'none';
+
+                setTimeout(() => {
+                    alert('Thank you for your message!\n\nWe\'ll get back to you within 24–48 hours at ' + formData.email + '.');
+                    contactForm.reset();
+                    sendMessageBtn.disabled = false;
+                    sendMessageBtn.textContent = 'Send Message';
+                    sendMessageBtn.style.background = '';
+                    sendMessageBtn.style.boxShadow = '';
+                }, 300);
+            }, 1200);
+        });
+    </script>
+
+</body>
+</html>
