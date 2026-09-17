@@ -1090,9 +1090,9 @@
                 <!-- Product Info -->
                 <div class="product-info">
                     <span class="product-category">Self-Help &amp; Psychology</span>
-                    <h1 class="product-title">The Power of Habit: Why We Do What We Do, and How to Change</h1>
+                    <h1 class="product-title" id="productTitle">The Power of Habit: Why We Do What We Do, and How to Change</h1>
                     <p class="product-subtitle">There's never been a better time to set new habits. This book will change your life.</p>
-                    <p class="product-author">by <strong>Charles Duhigg</strong> &nbsp;|&nbsp; Award-Winning Journalist &nbsp;|&nbsp; Format: Kindle Edition</p>
+                    <p class="product-author">by <strong id="productAuthor">Charles Duhigg</strong> &nbsp;|&nbsp; Award-Winning Journalist &nbsp;|&nbsp; Format: Kindle Edition</p>
 
                     <div class="product-rating">
                         <span class="stars">★★★★☆</span>
@@ -1106,8 +1106,8 @@
                     <!-- Price Block -->
                     <div class="price-block">
                         <div class="price-row">
-                            <span class="price-current">$4.99</span>
-                            <span class="price-original">$9.99</span>
+                            <span class="price-current" id="productPrice">$4.99</span>
+                            <span class="price-original" id="productOriginalPrice">$9.99</span>
                             <span class="price-discount">–50%</span>
                         </div>
                         <p class="price-note">Digital List Price: $9.99 &nbsp;·&nbsp; One-time payment &nbsp;·&nbsp; Instant digital delivery</p>
@@ -1115,7 +1115,7 @@
 
                     <!-- Actions -->
                     <div class="product-actions">
-                        <a href="checkout.html" class="btn btn-primary btn-large">Buy Now</a>
+                        <a href="#" class="btn btn-primary btn-large" id="buyNowBtn">Buy Now</a>
                         <a href="#details" class="btn btn-secondary btn-large">See Details</a>
                     </div>
 
@@ -1264,7 +1264,7 @@
                         </div>
 
                         <div class="excerpt-cta">
-                            <a href="checkout.html" class="btn btn-primary btn-large">Get the Full Book</a>
+                            <a href="#" class="btn btn-primary btn-large" id="excerptBuyBtn">Get the Full Book</a>
                         </div>
                     </div>
                 </div>
@@ -1346,7 +1346,7 @@
                 <p class="final-cta-text">
                     Get your copy of The Power of Habit today and discover how to transform your habits, your business, and your life.
                 </p>
-                <a href="checkout.html" class="btn btn-primary btn-large">Buy Now — $4.99</a>
+                <a href="#" class="btn btn-primary btn-large" id="finalBuyBtn">Buy Now — $4.99</a>
                 <p class="final-cta-trust">Instant access &bull; One-time payment &bull; Read anywhere</p>
             </div>
         </section>
@@ -1403,6 +1403,61 @@
     JAVASCRIPT
     ============================================================ -->
     <script>
+        // ============================================================
+        // PRODUCT DATA — PASS TO CHECKOUT
+        // ============================================================
+        const PRODUCT = {
+            title: 'The Power of Habit: Why We Do What We Do, and How to Change',
+            author: 'Charles Duhigg',
+            price: 4.99,
+            originalPrice: 9.99,
+            quantity: 1,
+            format: 'eBook (PDF)',
+            image: 'https://ebook.faizkhan765644.workers.dev/The%20Power%20of%20Habit.jpg'
+        };
+
+        function goToCheckout() {
+            // Save product to localStorage for checkout page
+            try {
+                localStorage.setItem('checkoutProduct', JSON.stringify(PRODUCT));
+            } catch (e) { /* ignore */ }
+
+            // Build URL with query params as backup
+            const params = new URLSearchParams({
+                title: PRODUCT.title,
+                author: PRODUCT.author,
+                price: PRODUCT.price,
+                originalPrice: PRODUCT.originalPrice,
+                qty: PRODUCT.quantity,
+                format: PRODUCT.format,
+                image: PRODUCT.image
+            });
+
+            window.location.href = 'checkout.html?' + params.toString();
+        }
+
+        // Attach to all Buy Now buttons
+        document.getElementById('buyNowBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            goToCheckout();
+        });
+        document.getElementById('excerptBuyBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            goToCheckout();
+        });
+        document.getElementById('finalBuyBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            goToCheckout();
+        });
+
+        // Also handle the header "Buy Now" links (they point to #buy)
+        document.querySelectorAll('a[href="#buy"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                // If user clicks header Buy Now, scroll to final CTA instead
+                // (keep default smooth scroll behaviour — no redirect)
+            });
+        });
+
         // ============================================================
         // MOBILE MENU
         // ============================================================
