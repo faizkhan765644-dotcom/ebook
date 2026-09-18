@@ -1038,6 +1038,11 @@
     ============================================================ -->
     <script>
         // ============================================================
+        // ⚠️ GOOGLE SHEETS WEB APP URL
+        // ============================================================
+        const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzmPROmvVneCQc6pZA15N2bkvTAQgsKeL66qOaXv8cSlXzErdGRdUDawMfJfPJd8aw6/exec';
+
+        // ============================================================
         // PRODUCT DATA HANDLING (from URL / localStorage)
         // ============================================================
         (function loadProductData() {
@@ -1205,9 +1210,9 @@
         }
 
         // ============================================================
-        // FORM SUBMIT — REDIRECT TO THANK YOU PAGE
+        // FORM SUBMIT — SAVE TO GOOGLE SHEETS + REDIRECT TO THANK YOU
         // ============================================================
-        form.addEventListener('submit', (e) => {
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
             let isValid = true;
@@ -1245,14 +1250,54 @@
                 image: ''
             };
 
-            // Save the product to localStorage so thank-you page can read it
+            const total = window.__checkoutTotal || product.price;
+
+            // Generate Order ID
+            const orderId = '#CP-' + Math.floor(100000 + Math.random() * 900000);
+
+            // Collect all form data
+            const orderData = {
+                orderId: orderId,
+                productTitle: product.title,
+                productAuthor: product.author,
+                productPrice: product.price.toFixed(2),
+                total: total.toFixed(2),
+                email: document.getElementById('email').value,
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                country: document.getElementById('country').value,
+                address: document.getElementById('address').value,
+                city: document.getElementById('city').value,
+                state: document.getElementById('state').value,
+                zip: document.getElementById('zip').value,
+                phone: document.getElementById('phone').value,
+                notes: document.getElementById('notes').value
+            };
+
+            // ---- SEND TO GOOGLE SHEETS ----
+            try {
+                await fetch(GOOGLE_SHEETS_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',  // Important for Google Apps Script
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(orderData)
+                });
+                console.log('✅ Order saved to Google Sheets:', orderData);
+            } catch (err) {
+                console.error('⚠️ Could not save to Google Sheets:', err);
+                // Continue anyway — don't block the user
+            }
+
+            // Save product to localStorage for thank-you page
             try {
                 localStorage.setItem('checkoutProduct', JSON.stringify(product));
+                localStorage.setItem('orderId', orderId);
             } catch (err) { /* ignore */ }
 
-            // Simulate processing delay then redirect to thank you page
+            // Small delay then redirect to Thank You page
             setTimeout(() => {
-                // Build URL for thank-you page with product params as backup
                 const params = new URLSearchParams({
                     title: product.title,
                     author: product.author,
@@ -1260,7 +1305,8 @@
                     originalPrice: product.originalPrice,
                     qty: product.quantity,
                     format: product.format,
-                    image: product.image
+                    image: product.image,
+                    orderId: orderId
                 });
 
                 // 🎯 REDIRECT TO THANK YOU PAGE
