@@ -1143,15 +1143,6 @@
         })();
 
         // ============================================================
-        // HEADER SCROLL
-        // ============================================================
-        const header = document.getElementById('siteHeader');
-
-        window.addEventListener('scroll', () => {
-            // Header is always solid on checkout page
-        });
-
-        // ============================================================
         // BACK TO TOP
         // ============================================================
         const backToTop = document.getElementById('backToTop');
@@ -1213,7 +1204,9 @@
             }
         }
 
-        // Form submit
+        // ============================================================
+        // FORM SUBMIT — REDIRECT TO THANK YOU PAGE
+        // ============================================================
         form.addEventListener('submit', (e) => {
             e.preventDefault();
 
@@ -1237,57 +1230,41 @@
                 return;
             }
 
-            // Simulate order processing
+            // Show processing state
             placeOrderBtn.disabled = true;
             placeOrderBtn.textContent = 'Processing...';
 
+            // Get current product data
+            const product = window.__checkoutProduct || {
+                title: 'Product not specified',
+                author: '',
+                price: 0,
+                originalPrice: 0,
+                quantity: 1,
+                format: '',
+                image: ''
+            };
+
+            // Save the product to localStorage so thank-you page can read it
+            try {
+                localStorage.setItem('checkoutProduct', JSON.stringify(product));
+            } catch (err) { /* ignore */ }
+
+            // Simulate processing delay then redirect to thank you page
             setTimeout(() => {
-                // Collect form data using the actual product info
-                const product = window.__checkoutProduct || {
-                    title: 'Product not specified',
-                    author: '',
-                    price: 0,
-                    originalPrice: 0,
-                    quantity: 1,
-                    format: ''
-                };
-                const total = window.__checkoutTotal || product.price;
+                // Build URL for thank-you page with product params as backup
+                const params = new URLSearchParams({
+                    title: product.title,
+                    author: product.author,
+                    price: product.price,
+                    originalPrice: product.originalPrice,
+                    qty: product.quantity,
+                    format: product.format,
+                    image: product.image
+                });
 
-                const formData = {
-                    email: document.getElementById('email').value,
-                    firstName: document.getElementById('firstName').value,
-                    lastName: document.getElementById('lastName').value,
-                    country: document.getElementById('country').value,
-                    address: document.getElementById('address').value,
-                    city: document.getElementById('city').value,
-                    state: document.getElementById('state').value,
-                    zip: document.getElementById('zip').value,
-                    phone: document.getElementById('phone').value,
-                    notes: document.getElementById('notes').value,
-                    product: {
-                        title: product.title,
-                        author: product.author,
-                        price: product.price,
-                        originalPrice: product.originalPrice,
-                        quantity: product.quantity,
-                        format: product.format
-                    },
-                    total: total
-                };
-
-                console.log('Order submitted:', formData);
-
-                // Redirect to thank you page (replace with actual URL)
-                // window.location.href = 'thank-you.html';
-
-                // For demo purposes, show success message
-                placeOrderBtn.textContent = '✓ Order Complete!';
-                placeOrderBtn.style.background = 'var(--success)';
-                placeOrderBtn.style.boxShadow = 'none';
-
-                setTimeout(() => {
-                    alert('Demo: Order would be processed here.\n\nProduct: ' + formData.product.title + '\nTotal: $' + formData.total.toFixed(2) + '\n\nIn production, this would redirect to a thank-you page or payment gateway.');
-                }, 300);
+                // 🎯 REDIRECT TO THANK YOU PAGE
+                window.location.href = 'thankyou.html?' + params.toString();
             }, 1500);
         });
 
