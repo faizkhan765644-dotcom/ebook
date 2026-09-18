@@ -947,6 +947,7 @@
         // ============================================================
         // PRODUCT DOWNLOAD DATABASE
         // Each product has a direct download URL + metadata
+        // Keys are lowercase for case-insensitive matching.
         // ============================================================
         const DOWNLOAD_DB = {
             'atomic habits': {
@@ -1041,23 +1042,59 @@
             // Set format
             productFormat.textContent = product.format || 'eBook (PDF)';
 
-            // Find file in DOWNLOAD_DB by title (case-insensitive partial match)
+            // ============================================================
+            // IMPROVED FILE MATCHING
+            // Try to match product title against DOWNLOAD_DB keys.
+            // Uses multiple strategies: includes, startsWith, word overlap.
+            // ============================================================
             let fileInfo = null;
-            const titleLower = product.title.toLowerCase();
+            const titleLower = product.title.toLowerCase().trim();
+
+            // Strategy 1: Direct key inclusion (either direction)
             for (const key in DOWNLOAD_DB) {
-                if (titleLower.includes(key) || key.includes(titleLower.split(':')[0].trim().toLowerCase())) {
+                if (titleLower.includes(key) || key.includes(titleLower)) {
                     fileInfo = DOWNLOAD_DB[key];
                     break;
                 }
             }
 
-            // Fallback file info if no match
+            // Strategy 2: Match by first significant word (e.g. "atomic", "deep", "mindset")
             if (!fileInfo) {
-                fileInfo = {
-                    file: 'https://ebook.faizkhan765644.workers.dev/Atomic%20Habits.pdf',
-                    size: '2.4 MB',
-                    pages: '— pages'
-                };
+                const significantWords = titleLower
+                    .replace(/[^\w\s]/g, '')
+                    .split(/\s+/)
+                    .filter(w => w.length > 3 && !['the', 'and', 'for', 'with', 'from', 'life', 'changing', 'million', 'copy', 'bestseller'].includes(w));
+
+                for (const key in DOWNLOAD_DB) {
+                    const keyWords = key.split(/\s+/);
+                    const overlap = significantWords.some(word => keyWords.includes(word));
+                    if (overlap) {
+                        fileInfo = DOWNLOAD_DB[key];
+                        break;
+                    }
+                }
+            }
+
+            // Strategy 3: Look for known book names anywhere in the title
+            if (!fileInfo) {
+                const knownBooks = [
+                    { keyword: 'atomic', key: 'atomic habits' },
+                    { keyword: 'power of habit', key: 'the power of habit' },
+                    { keyword: 'deep work', key: 'deep work' },
+                    { keyword: 'mindset', key: 'mindset' },
+                    { keyword: 'thinking', key: 'thinking, fast and slow' }
+                ];
+                for (const book of knownBooks) {
+                    if (titleLower.includes(book.keyword)) {
+                        fileInfo = DOWNLOAD_DB[book.key];
+                        break;
+                    }
+                }
+            }
+
+            // Final fallback — use Atomic Habits
+            if (!fileInfo) {
+                fileInfo = DOWNLOAD_DB['atomic habits'];
             }
 
             productSize.textContent = fileInfo.size;
@@ -1082,9 +1119,6 @@
 
             // Update page title with product name
             document.title = 'Thank You — ' + product.title + ' | Clarity Press';
-
-            // Clean up localStorage (optional — remove after use)
-            // try { localStorage.removeItem('checkoutProduct'); } catch (e) {}
         })();
 
         // ============================================================
