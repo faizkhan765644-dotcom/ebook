@@ -959,7 +959,15 @@
 
                     <!-- Actions -->
                     <div class="product-actions">
-                        <a href="[CHECKOUT_URL]" class="btn btn-primary btn-large">Buy Now</a>
+                        <button class="btn btn-primary btn-large buy-now-btn"
+                            data-title="Atomic Habits: The life-changing million-copy #1 bestseller"
+                            data-author="James Clear"
+                            data-price="4.99"
+                            data-original-price="8.99"
+                            data-format="eBook (PDF)"
+                            data-image="https://ebook.faizkhan765644.workers.dev/Atomic%20Habits.jpg">
+                            Buy Now
+                        </button>
                         <a href="#details" class="btn btn-secondary btn-large">See Details</a>
                     </div>
 
@@ -1128,7 +1136,15 @@
                 <p class="final-cta-text">
                     Get your copy of Atomic Habits today and start building the tiny changes that lead to remarkable results.
                 </p>
-                <a href="[CHECKOUT_URL]" class="btn btn-primary btn-large">Buy Now — $4.99</a>
+                <button class="btn btn-primary btn-large buy-now-btn"
+                    data-title="Atomic Habits: The life-changing million-copy #1 bestseller"
+                    data-author="James Clear"
+                    data-price="4.99"
+                    data-original-price="8.99"
+                    data-format="eBook (PDF)"
+                    data-image="https://ebook.faizkhan765644.workers.dev/Atomic%20Habits.jpg">
+                    Buy Now — $4.99
+                </button>
                 <p class="final-cta-trust">Instant access &bull; One-time payment &bull; Read anywhere</p>
             </div>
         </section>
@@ -1235,6 +1251,43 @@
                     e.preventDefault();
                     targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
+            });
+        });
+
+        // ============================================================
+        // BUY NOW BUTTONS — PASS PRODUCT TO CHECKOUT
+        // ============================================================
+        document.querySelectorAll('.buy-now-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                const product = {
+                    title: this.dataset.title,
+                    author: this.dataset.author,
+                    price: parseFloat(this.dataset.price),
+                    originalPrice: parseFloat(this.dataset.originalPrice),
+                    quantity: 1,
+                    format: this.dataset.format,
+                    image: this.dataset.image
+                };
+
+                // Save to localStorage for checkout page
+                try {
+                    localStorage.setItem('checkoutProduct', JSON.stringify(product));
+                } catch (err) { /* ignore */ }
+
+                // Build URL with query params as backup
+                const params = new URLSearchParams({
+                    title: product.title,
+                    author: product.author,
+                    price: product.price,
+                    originalPrice: product.originalPrice,
+                    qty: product.quantity,
+                    format: product.format,
+                    image: product.image
+                });
+
+                window.location.href = 'checkout.html?' + params.toString();
             });
         });
     </script>
